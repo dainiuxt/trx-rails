@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TRX Chest Press - TRX Workout Assistant</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            orange: {
+              50: "#fff7ed",
+              100: "#ffedd5",
+              200: "#fed7aa",
+              300: "#fdba74",
+              400: "#fb923c",
+              500: "#f97316",
+              600: "#ea580c",
+              700: "#c2410c",
+              800: "#9a3412",
+              900: "#7c2d12",
+            },
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+  </style>
+</head>
+<body class="flex min-h-screen flex-col bg-white text-gray-900">
+  <header class="sticky top-0 z-50 w-full border-b bg-white/95 backdrop-blur">
+    <div class="container mx-auto flex h-16 items-center justify-between px-4">
+      <div class="flex items-center">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6 text-orange-500">
+          <path d="M6.5 6.5h11"></path>
+          <path d="M6.5 17.5h11"></path>
+          <path d="M6.5 6.5c1.5 3 2 4.5 2 5.5s-.5 2.5-2 5.5"></path>
+          <path d="M17.5 6.5c-1.5 3-2 4.5-2 5.5s.5 2.5 2 5.5"></path>
+        </svg>
+        <span class="ml-2 text-xl font-bold">TRX Workout Assistant</span>
+      </div>
+
+      <!-- Desktop Navigation -->
+      <nav class="hidden md:flex items-center space-x-4">
+        <a href="index.html#exercises" class="text-sm font-medium">Exercises</a>
+        <a href="index.html#workouts" class="text-sm font-medium">Workouts</a>
+        <a href="index.html#timer" class="text-sm font-medium">Timer</a>
+        <button class="rounded-md border border-gray-200 px-3 py-1.5 text-sm font-medium">Sign In</button>
+        <button class="rounded-md bg-orange-500 px-3 py-1.5 text-sm font-medium text-white hover:bg-orange-600">Get Started</button>
+      </nav>
+
+      <!-- Mobile Navigation Button -->
+      <button class="md:hidden h-9 w-9 p-0 flex items-center justify-center">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6">
+          <line x1="4" x2="20" y1="12" y2="12"></line>
+          <line x1="4" x2="20" y1="6" y2="6"></line>
+          <line x1="4" x2="20" y1="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <main class="flex-1">
+    <div class="container mx-auto px-4 py-8 md:px-6 md:py-12">
+      <a href="index.html#exercises" class="inline-flex items-center text-sm font-medium text-orange-500 hover:underline mb-6">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-1 h-4 w-4">
+          <path d="m15 18-6-6 6-6"></path>
+        </svg>
+        Back to Exercises
+      </a>
+
+      <div class="grid gap-8 md:grid-cols-2">
+        <div>
+          <img src="https://placehold.co/600x400/f97316/FFFFFF/png?text=TRX+Chest+Press" alt="TRX Chest Press" class="rounded-lg object-cover w-full">
+
+          <div class="mt-6 flex flex-wrap gap-2">
+            <div class="rounded-full bg-orange-100 px-3 py-1 text-sm text-orange-700">Upper Body</div>
+            <div class="rounded-full bg-orange-100 px-3 py-1 text-sm text-orange-700">Intermediate</div>
+            <div class="rounded-full bg-orange-100 px-3 py-1 text-sm text-orange-700">Chest</div>
+            <div class="rounded-full bg-orange-100 px-3 py-1 text-sm text-orange-700">Shoulders</div>
+            <div class="rounded-full bg-orange-100 px-3 py-1 text-sm text-orange-700">Triceps</div>
+          </div>
+        </div>
+
+        <div class="space-y-6">
+          <div>
+            <h1 class="text-3xl font-bold">TRX Chest Press</h1>
+            <p class="mt-2 text-gray-500">
+              The TRX Chest Press is a bodyweight exercise that targets the chest, shoulders, and triceps. It's an effective alternative to traditional push-ups or bench presses.
+            </p>
+          </div>
+
+          <!-- Exercise timing information -->
+          <div class="bg-gray-100 p-4 rounded-lg">
+            <h2 class="text-lg font-medium mb-2 flex items-center">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2 h-5 w-5 text-orange-500">
+                <rect width="18" height="18" x="3" y="3" rx="2"></rect>
+                <path d="M3 9h18"></path>
+                <path d="M9 21V9"></path  rx="2"></rect>
+                <path d="M3 9h18"></path>
+                <path d="M9 21V9"></path>
+              </svg>
+              Recommended Training
+            </h2>
+            <div class="grid grid-cols-3 gap-4">
+              <div>
+                <p class="text-sm text-gray-500">Sets</p>
+                <p class="font-medium">3</p>
+              </div>
+              <div>
+                <p class="text-sm text-gray-500">Reps</p>
+                <p class="font-medium">12</p>
+              </div>
+              <div>
+                <p class="text-sm text-gray-500">Rest</p>
+                <p class="font-medium">30 sec</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="flex gap-4">
+            <a href="timer.html?exercise=trx-chest-press" class="inline-flex items-center justify-center rounded-md bg-orange-500 px-4 py-2 text-sm font-medium text-white hover:bg-orange-600">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2 h-4 w-4">
+                <polygon points="5 3 19 12 5 21 5 3"></polygon>
+              </svg>
+              Start Exercise
+            </a>
+            <button class="inline-flex items-center justify-center rounded-md border border-gray-200 px-4 py-2 text-sm font-medium">Add to Workout</button>
+          </div>
+
+          <div>
+            <h2 class="text-xl font-bold mb-2">Instructions</h2>
+            <ol class="list-decimal pl-5 space-y-2">
+              <li>Stand facing away from the anchor point, holding the handles with arms extended at chest height.</li>
+              <li>Lean forward, keeping your body straight from head to heels.</li>
+              <li>Bend your elbows to lower your chest between the handles.</li>
+              <li>Press back to the starting position by extending your arms.</li>
+              <li>Keep your core engaged and maintain a straight body position throughout the movement.</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-12 grid gap-8 md:grid-cols-2">
+        <div>
+          <h2 class="text-xl font-bold mb-4">Tips</h2>
+          <ul class="list-disc pl-5 space-y-2">
+            <li>To increase difficulty, move your feet closer to the anchor point.</li>
+            <li>To decrease difficulty, move your feet further from the anchor point.</li>
+            <li>Keep your elbows at a 45-degree angle to your body to protect your shoulders.</li>
+            <li>Don't let your hips sag or pike during the movement.</li>
+          </ul>
+        </div>
+
+        <div>
+          <h2 class="text-xl font-bold mb-4">Variations</h2>
+          <ul class="list-disc pl-5 space-y-2">
+            <li>Single-arm TRX Chest Press</li>
+            <li>TRX Chest Press with Rotation</li>
+            <li>TRX Chest Press with Feet Elevated</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="mt-12">
+        <h2 class="text-xl font-bold mb-4">Related Exercises</h2>
+        <div class="grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+          <!-- Related Exercise 1 -->
+          <div class="rounded-lg border bg-white shadow-sm overflow-hidden">
+            <div class="p-0">
+              <img src="https://placehold.co/300x150/f97316/FFFFFF/png?text=TRX+Push-up" alt="TRX Push-up" class="w-full h-[150px] object-cover">
+              <div class="p-4">
+                <h3 class="font-medium">TRX Push-up</h3>
+                <a href="#" class="text-orange-500 text-sm">View Details</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Related Exercise 2 -->
+          <div class="rounded-lg border bg-white shadow-sm overflow-hidden">
+            <div class="p-0">
+              <img src="https://placehold.co/300x150/f97316/FFFFFF/png?text=TRX+Tricep+Extension" alt="TRX Tricep Extension" class="w-full h-[150px] object-cover">
+              <div class="p-4">
+                <h3 class="font-medium">TRX Tricep Extension</h3>
+                <a href="#" class="text-orange-500 text-sm">View Details</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Related Exercise 3 -->
+          <div class="rounded-lg border bg-white shadow-sm overflow-hidden">
+            <div class="p-0">
+              <img src="https://placehold.co/300x150/f97316/FFFFFF/png?text=TRX+Y-Fly" alt="TRX Y-Fly" class="w-full h-[150px] object-cover">
+              <div class="p-4">
+                <h3 class="font-medium">TRX Y-Fly</h3>
+                <a href="#" class="text-orange-500 text-sm">View Details</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="border-t py-6 md:py-0">
+    <div class="container mx-auto flex flex-col items-center justify-between gap-4 md:h-24 md:flex-row px-4">
+      <div class="flex items-center gap-2">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5 text-orange-500">
+          <path d="M6.5 6.5h11"></path>
+          <path d="M6.5 17.5h11"></path>
+          <path d="M6.5 6.5c1.5 3 2 4.5 2 5.5s-.5 2.5-2 5.5"></path>
+          <path d="M17.5 6.5c-1.5 3-2 4.5-2 5.5s.5 2.5 2 5.5"></path>
+        </svg>
+        <p class="text-sm text-gray-500">
+          © 2023 TRX Workout Assistant. All rights reserved.
+        </p>
+      </div>
+      <nav class="flex gap-4 sm:gap-6">
+        <a href="#" class="text-sm font-medium hover:underline">Terms</a>
+        <a href="#" class="text-sm font-medium hover:underline">Privacy</a>
+        <a href="#" class="text-sm font-medium hover:underline">Contact</a>
+      </nav>
+    </div>
+  </footer>
+</body>
+</html>

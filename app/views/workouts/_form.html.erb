@@ -1,0 +1,10 @@
+<%= form_with model: @workout, class: "p-6 space-y-6" do |form| %>
+  <div class="space-y-2">
+    <%= form.label :name, class: "text-sm font-medium" %>
+    <%= form.text_field :name, class: "w-full rounded-md border border-gray-200 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent" %>
+  </div>
+
+  <div class="pt-6">
+    <%= form.submit class: "w-full inline-flex justify-center rounded-md bg-orange-500 px-4 py-3 text-sm font-medium text-white hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2" %>
+  </div>
+<% end %>

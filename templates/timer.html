@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Workout Timer - TRX Workout Assistant</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            orange: {
+              50: "#fff7ed",
+              100: "#ffedd5",
+              200: "#fed7aa",
+              300: "#fdba74",
+              400: "#fb923c",
+              500: "#f97316",
+              600: "#ea580c",
+              700: "#c2410c",
+              800: "#9a3412",
+              900: "#7c2d12",
+            },
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+  </style>
+</head>
+<body class="flex min-h-screen flex-col bg-white text-gray-900">
+  <header class="sticky top-0 z-50 w-full border-b bg-white/95 backdrop-blur">
+    <div class="container mx-auto flex h-16 items-center justify-between px-4">
+      <div class="flex items-center">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6 text-orange-500">
+          <path d="M6.5 6.5h11"></path>
+          <path d="M6.5 17.5h11"></path>
+          <path d="M6.5 6.5c1.5 3 2 4.5 2 5.5s-.5 2.5-2 5.5"></path>
+          <path d="M17.5 6.5c-1.5 3-2 4.5-2 5.5s.5 2.5 2 5.5"></path>
+        </svg>
+        <span class="ml-2 text-xl font-bold">TRX Workout Assistant</span>
+      </div>
+
+      <!-- Desktop Navigation -->
+      <nav class="hidden md:flex items-center space-x-4">
+        <a href="index.html#exercises" class="text-sm font-medium">Exercises</a>
+        <a href="index.html#workouts" class="text-sm font-medium">Workouts</a>
+        <a href="index.html#timer" class="text-sm font-medium">Timer</a>
+        <button class="rounded-md border border-gray-200 px-3 py-1.5 text-sm font-medium">Sign In</button>
+        <button class="rounded-md bg-orange-500 px-3 py-1.5 text-sm font-medium text-white hover:bg-orange-600">Get Started</button>
+      </nav>
+
+      <!-- Mobile Navigation Button -->
+      <button class="md:hidden h-9 w-9 p-0 flex items-center justify-center">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6">
+          <line x1="4" x2="20" y1="12" y2="12"></line>
+          <line x1="4" x2="20" y1="6" y2="6"></line>
+          <line x1="4" x2="20" y1="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <main class="flex-1">
+    <section class="w-full py-12 md:py-24">
+      <div class="container mx-auto px-4 md:px-6">
+        <div class="flex flex-col items-center justify-center space-y-4 text-center mb-8">
+          <div class="space-y-2">
+            <h1 class="text-3xl font-bold tracking-tighter md:text-4xl">
+              Workout Timer
+            </h1>
+            <p class="max-w-[700px] text-gray-500 md:text-xl">
+              Customize your workout intervals, rest periods, sets, and rounds to create the perfect TRX training session.
+            </p>
+          </div>
+        </div>
+
+        <div class="mx-auto max-w-md">
+          <div class="rounded-lg border-2 border-gray-200 bg-white shadow-sm overflow-hidden">
+            <div class="p-6 bg-orange-100">
+              <h3 class="text-center text-4xl font-semibold">00:30</h3>
+              <p class="text-center text-lg text-gray-700">WORK</p>
+            </div>
+            <div class="p-6">
+              <div class="space-y-6">
+                <!-- Progress indicators -->
+                <div class="grid grid-cols-2 gap-4 text-center">
+                  <div class="space-y-1">
+                    <div class="text-2xl font-bold">1/3</div>
+                    <div class="text-xs text-gray-500">SET</div>
+                  </div>
+                  <div class="space-y-1">
+                    <div class="text-2xl font-bold">1/1</div>
+                    <div class="text-xs text-gray-500">ROUND</div>
+                  </div>
+                </div>
+
+                <!-- Timer controls -->
+                <div class="flex justify-center space-x-4">
+                  <button class="h-12 w-12 rounded-full p-0 bg-orange-500 text-white flex items-center justify-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6">
+                      <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                    </svg>
+                    <span class="sr-only">Start</span>
+                  </button>
+
+                  <button class="h-12 w-12 rounded-full p-0 border border-gray-200 flex items-center justify-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5">
+                      <path d="M3 2v6h6"></path>
+                      <path d="M3 13a9 9 0 1 0 3-7.7L3 8"></path>
+                    </svg>
+                    <span class="sr-only">Reset</span>
+                  </button>
+
+                  <button class="h-12 w-12 rounded-full p-0 border border-gray-200 flex items-center justify-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5">
+                      <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                      <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                      <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+                    </svg>
+                    <span class="sr-only">Toggle Sound</span>
+                  </button>
+                </div>
+
+                <!-- Timer settings -->
+                <div class="space-y-4 pt-4 border-t">
+                  <div class="space-y-2">
+                    <div class="flex justify-between">
+                      <label class="text-sm font-medium">Work Time: 30s</label>
+                    </div>
+                    <div class="h-2 bg-gray-100 rounded-full">
+                      <div class="h-2 bg-orange-500 rounded-full w-1/4"></div>
+                    </div>
+                  </div>
+
+                  <div class="space-y-2">
+                    <div class="flex justify-between">
+                      <label class="text-sm font-medium">Rest Time: 15s</label>
+                    </div>
+                    <div class="h-2 bg-gray-100 rounded-full">
+                      <div class="h-2 bg-orange-500 rounded-full w-1/4"></div>
+                    </div>
+                  </div>
+
+                  <div class="grid grid-cols-2 gap-4">
+                    <div class="space-y-2">
+                      <label class="text-sm font-medium">Sets</label>
+                      <input type="number" min="1" max="20" value="3" class="w-full rounded-md border border-gray-200 px-3 py-2 text-sm">
+                    </div>
+
+                    <div class="space-y-2">
+                      <label class="text-sm font-medium">Rounds</label>
+                      <input type="number" min="1" max="10" value="1" class="w-full rounded-md border border-gray-200 px-3 py-2 text-sm">
+                    </div>
+                  </div>
+
+                  <div class="space-y-2">
+                    <label class="text-sm font-medium">Timer Mode</label>
+                    <div class="flex space-x-2">
+                      <button class="inline-flex items-center justify-center rounded-md bg-orange-500 px-3 py-1.5 text-sm font-medium text-white">
+                        Timed
+                      </button>
+                      <button class="inline-flex items-center justify-center rounded-md border border-gray-200 px-3 py-1.5 text-sm font-medium">
+                        Reps
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="p-6 border-t">
+              <button class="w-full inline-flex items-center justify-center rounded-md bg-orange-500 px-4 py-2 text-sm font-medium text-white hover:bg-orange-600">
+                Start Timer
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-12 max-w-3xl mx-auto">
+          <h2 class="text-2xl font-bold mb-4">How to Use the Timer</h2>
+          <div class="space-y-4">
+            <div class="bg-gray-100 p-4 rounded-lg">
+              <h3 class="font-medium mb-2">1. Set Your Intervals</h3>
+              <p>
+                Adjust the work and rest times using the sliders. Work intervals are when you perform the
+                exercise, and rest intervals are your recovery periods between sets.
+              </p>
+            </div>
+
+            <div class="bg-gray-100 p-4 rounded-lg">
+              <h3 class="font-medium mb-2">2. Configure Sets and Rounds</h3>
+              <p>
+                Sets are repetitions of a single exercise. Rounds are complete cycles of all exercises in your
+                workout. Adjust these based on your workout plan.
+              </p>
+            </div>
+
+            <div class="bg-gray-100 p-4 rounded-lg">
+              <h3 class="font-medium mb-2">3. Start Your Workout</h3>
+              <p>
+                Press the play button to begin. The timer will guide you through your work and rest intervals,
+                keeping track of your sets and rounds automatically.
+              </p>
+            </div>
+
+            <div class="bg-gray-100 p-4 rounded-lg">
+              <h3 class="font-medium mb-2">4. Audio Cues</h3>
+              <p>
+                The timer provides audio signals when transitioning between work and rest periods. You can toggle
+                sound on/off using the sound button.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="border-t py-6 md:py-0">
+    <div class="container mx-auto flex flex-col items-center justify-between gap-4 md:h-24 md:flex-row px-4">
+      <div class="flex items-center gap-2">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5 text-orange-500">
+          <path d="M6.5 6.5h11"></path>
+          <path d="M6.5 17.5h11"></path>
+          <path d="M6.5 6.5c1.5 3 2 4.5 2 5.5s-.5 2.5-2 5.5"></path>
+          <path d="M17.5 6.5c-1.5 3-2 4.5-2 5.5s.5 2.5 2 5.5"></path>
+        </svg>
+        <p class="text-sm text-gray-500">
+          © 2023 TRX Workout Assistant. All rights reserved.
+        </p>
+      </div>
+      <nav class="flex gap-4 sm:gap-6">
+        <a href="#" class="text-sm font-medium hover:underline">Terms</a>
+        <a href="#" class="text-sm font-medium hover:underline">Privacy</a>
+        <a href="#" class="text-sm font-medium hover:underline">Contact</a>
+      </nav>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Form - TRX Workout Assistant</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            orange: {
+              50: "#fff7ed",
+              100: "#ffedd5",
+              200: "#fed7aa",
+              300: "#fdba74",
+              400: "#fb923c",
+              500: "#f97316",
+              600: "#ea580c",
+              700: "#c2410c",
+              800: "#9a3412",
+              900: "#7c2d12",
+            },
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+  </style>
+</head>
+<body class="flex min-h-screen flex-col bg-white text-gray-900">
+  <header class="sticky top-0 z-50 w-full border-b bg-white/95 backdrop-blur">
+    <div class="container mx-auto flex h-16 items-center justify-between px-4">
+      <div class="flex items-center">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6 text-orange-500">
+          <path d="M6.5 6.5h11"></path>
+          <path d="M6.5 17.5h11"></path>
+          <path d="M6.5 6.5c1.5 3 2 4.5 2 5.5s-.5 2.5-2 5.5"></path>
+          <path d="M17.5 6.5c-1.5 3-2 4.5-2 5.5s.5 2.5 2 5.5"></path>
+        </svg>
+        <span class="ml-2 text-xl font-bold">TRX Workout Assistant</span>
+      </div>
+
+      <!-- Desktop Navigation -->
+      <nav class="hidden md:flex items-center space-x-4">
+        <a href="index.html#exercises" class="text-sm font-medium">Exercises</a>
+        <a href="index.html#workouts" class="text-sm font-medium">Workouts</a>
+        <a href="index.html#timer" class="text-sm font-medium">Timer</a>
+        <button class="rounded-md border border-gray-200 px-3 py-1.5 text-sm font-medium">Sign In</button>
+        <button class="rounded-md bg-orange-500 px-3 py-1.5 text-sm font-medium text-white hover:bg-orange-600">Get Started</button>
+      </nav>
+
+      <!-- Mobile Navigation Button -->
+      <button class="md:hidden h-9 w-9 p-0 flex items-center justify-center">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6">
+          <line x1="4" x2="20" y1="12" y2="12"></line>
+          <line x1="4" x2="20" y1="6" y2="6"></line>
+          <line x1="4" x2="20" y1="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <main class="flex-1">
+    <section class="w-full py-12 md:py-24">
+      <div class="container mx-auto px-4 md:px-6">
+        <div class="flex flex-col items-center justify-center space-y-4 text-center mb-8">
+          <div class="space-y-2">
+            <h1 class="text-3xl font-bold tracking-tighter md:text-4xl">Create Your Profile</h1>
+            <p class="max-w-[700px] text-gray-500 md:text-xl">
+              Complete your profile to get personalized workout recommendations and track your progress.
+            </p>
+          </div>
+        </div>
+
+        <div class="mx-auto max-w-2xl">
+          <div class="rounded-lg border bg-white shadow-sm overflow-hidden">
+            <div class="p-6 bg-orange-50 border-b">
+              <h2 class="text-xl font-semibold">Personal Information</h2>
+              <p class="text-sm text-gray-500 mt-1">Please fill out all required fields marked with an asterisk (*)</p>
+            </div>
+            
+            <form class="p-6 space-y-6">
+              <!-- Basic Information -->
+              <div class="space-y-4">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div class="space-y-2">
+                    <label for="first-name" class="text-sm font-medium">First Name *</label>
+                    <input 
+                      type="text" 
+                      id="first-name" 
+                      name="first-name" 
+                      required 
+                      class="w-full rounded-md border border-gray-200 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+                    >
+                  </div>
+                  <div class="space-y-2">
+                    <label for="last-name" class="text-sm font-medium">Last Name *</label>
+                    <input 
+                      type="text" 
+                      id="last-name" 
+                      name="last-name" 
+                      required 
+                      class="w-full rounded-md border border-gray-200 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+                    >
+                  </div>
+                </div>
+
+                <div class="space-y-2">
+                  <label for="email" class="text-sm font-medium">Email Address *</label>
+                  <input 
+                    type="email" 
+                    id="email" 
+                    name="email" 
+                    required 
+                    class="w-full rounded-md border border-gray-200 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+                  >
+                </div>
+
+                <div class="space-y-2">
+                  <label for="password" class="text-sm font-medium">Password *</label>
+                  <input 
+                    type="password" 
+                    id="password" 
+                    name="password" 
+                    required 
+                    class="w-full rounded-md border border-gray-200 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+                  >
+                  <p class="text-xs text-gray-500">Password must be at least 8 characters long and include a number and a special character.</p>
+                </div>
+              </div>
+
+              <!-- Fitness Information -->
+              <div class="pt-6 border-t border-gray-100">
+                <h3 class="text-lg font-medium mb-4">Fitness Information</h3>
+                
+                <div class="space-y-4">
+                  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="space-y-2">
+                      <label for="fitness-level" class="text-sm font-medium">Fitness Level</label>
+                      <select 
+                        id="fitness-level" 
+                        name="fitness-level" 
+                        class="w-full rounded-md border border-gray-200 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+                      >
+                        <option value="">Select your level</option>
+                        <option value="beginner">Beginner</option>
+                        <option value="intermediate">Intermediate</option>
+                        <option value="advanced">Advanced</option>
+                      </select>
+                    </div>
+                    <div class="space-y-2">
+                      <label for="workout-frequency" class="text-sm font-medium">Workout Frequency</label>
+                      <select 
+                        id="workout-frequency" 
+                        name="workout-frequency" 
+                        class="w-full rounded-md border border-gray-200 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+                      >
+                        <option value="">Select frequency</option>
+                        <option value="1-2">1-2 times per week</option>
+                        <option value="3-4">3-4 times per week</option>
+                        <option value="5+">5+ times per week</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="space-y-2">
+                    <label class="text-sm font-medium">Fitness Goals (select all that apply)</label>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-2 mt-2">
+                      <div class="flex items-center">
+                        <input 
+                          type="checkbox" 
+                          id="goal-strength" 
+                          name="goals" 
+                          value="strength" 
+                          class="h-4 w-4 rounded border-gray-300 text-orange-500 focus:ring-orange-500"
+                        >
+                        <label for="goal-strength" class="ml-2 text-sm">Build Strength</label>
+                      </div>
+                      <div class="flex items-center">
+                        <input 
+                          type="checkbox" 
+                          id="goal-endurance" 
+                          name="goals" 
+                          value="endurance" 
+                          class="h-4 w-4 rounded border-gray-300 text-orange-500 focus:ring-orange-500"
+                        >
+                        <label for="goal-endurance" class="ml-2 text-sm">Improve Endurance</label>
+                      </div>
+                      <div class="flex items-center">
+                        <input 
+                          type="checkbox" 
+                          id="goal-flexibility" 
+                          name="goals" 
+                          value="flexibility" 
+                          class="h-4 w-4 rounded border-gray-300 text-orange-500 focus:ring-orange-500"
+                        >
+                        <label for="goal-flexibility" class="ml-2 text-sm">Increase Flexibility</label>
+                      </div>
+                      <div class="flex items-center">
+                        <input 
+                          type="checkbox" 
+                          id="goal-weight-loss" 
+                          name="goals" 
+                          value="weight-loss" 
+                          class="h-4 w-4 rounded border-gray-300 text-orange-500 focus:ring-orange-500"
+                        >
+                        <label for="goal-weight-loss" class="ml-2 text-sm">Weight Loss</label>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="space-y-2">
+                    <label class="text-sm font-medium">Do you have a TRX suspension trainer?</label>
+                    <div class="flex space-x-4 mt-2">
+                      <div class="flex items-center">
+                        <input 
+                          type="radio" 
+                          id="trx-yes" 
+                          name="has-trx" 
+                          value="yes" 
+                          class="h-4 w-4 border-gray-300 text-orange-500 focus:ring-orange-500"
+                        >
+                        <label for="trx-yes" class="ml-2 text-sm">Yes</label>
+                      </div>
+                      <div class="flex items-center">
+                        <input 
+                          type="radio" 
+                          id="trx-no" 
+                          name="has-trx" 
+                          value="no" 
+                          class="h-4 w-4 border-gray-300 text-orange-500 focus:ring-orange-500"
+                        >
+                        <label for="trx-no" class="ml-2 text-sm">No</label>
+                      </div>
+                      <div class="flex items-center">
+                        <input 
+                          type="radio" 
+                          id="trx-planning" 
+                          name="has-trx" 
+                          value="planning" 
+                          class="h-4 w-4 border-gray-300 text-orange-500 focus:ring-orange-500"
+                        >
+                        <label for="trx-planning" class="ml-2 text-sm">Planning to buy one</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Additional Information -->
+              <div class="pt-6 border-t border-gray-100">
+                <h3 class="text-lg font-medium mb-4">Additional Information</h3>
+                
+                <div class="space-y-4">
+                  <div class="space-y-2">
+                    <label for="how-heard" class="text-sm font-medium">How did you hear about us?</label>
+                    <select 
+                      id="how-heard" 
+                      name="how-heard" 
+                      class="w-full rounded-md border border-gray-200 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+                    >
+                      <option value="">Please select</option>
+                      <option value="search">Search Engine</option>
+                      <option value="social">Social Media</option>
+                      <option value="friend">Friend or Family</option>
+                      <option value="ad">Advertisement</option>
+                      <option value="other">Other</option>
+                    </select>
+                  </div>
+
+                  <div class="space-y-2">
+                    <label for="comments" class="text-sm font-medium">Additional Comments</label>
+                    <textarea 
+                      id="comments" 
+                      name="comments" 
+                      rows="3" 
+                      class="w-full rounded-md border border-gray-200 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+                      placeholder="Tell us anything else that might help us customize your experience..."
+                    ></textarea>
+                  </div>
+
+                  <div class="flex items-start">
+                    <div class="flex items-center h-5">
+                      <input 
+                        id="newsletter" 
+                        name="newsletter" 
+                        type="checkbox" 
+                        class="h-4 w-4 rounded border-gray-300 text-orange-500 focus:ring-orange-500"
+                      >
+                    </div>
+                    <div class="ml-3 text-sm">
+                      <label for="newsletter" class="font-medium text-gray-700">Subscribe to newsletter</label>
+                      <p class="text-gray-500">Get workout tips, new exercises, and special offers delivered to your inbox.</p>
+                    </div>
+                  </div>
+
+                  <div class="flex items-start">
+                    <div class="flex items-center h-5">
+                      <input 
+                        id="terms" 
+                        name="terms" 
+                        type="checkbox" 
+                        required
+                        class="h-4 w-4 rounded border-gray-300 text-orange-500 focus:ring-orange-500"
+                      >
+                    </div>
+                    <div class="ml-3 text-sm">
+                      <label for="terms" class="font-medium text-gray-700">I agree to the <a href="#" class="text-orange-500 hover:underline">Terms of Service</a> and <a href="#" class="text-orange-500 hover:underline">Privacy Policy</a> *</label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Submit Button -->
+              <div class="pt-6">
+                <button 
+                  type="submit" 
+                  class="w-full inline-flex justify-center rounded-md bg-orange-500 px-4 py-3 text-sm font-medium text-white hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2"
+                >
+                  Create Account
+                </button>
+                <p class="text-center text-sm text-gray-500 mt-4">
+                  Already have an account? <a href="#" class="text-orange-500 hover:underline">Sign in</a>
+                </p>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="border-t py-6 md:py-0 mt-12">
+    <div class="container mx-auto flex flex-col items-center justify-between gap-4 md:h-24 md:flex-row px-4">
+      <div class="flex items-center gap-2">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5 text-orange-500">
+          <path d="M6.5 6.5h11"></path>
+          <path d="M6.5 17.5h11"></path>
+          <path d="M6.5 6.5c1.5 3 2 4.5 2 5.5s-.5 2.5-2 5.5"></path>
+          <path d="M17.5 6.5c-1.5 3-2 4.5-2 5.5s.5 2.5 2 5.5"></path>
+        </svg>
+        <p class="text-sm text-gray-500">
+          © 2023 TRX Workout Assistant. All rights reserved.
+        </p>
+      </div>
+      <nav class="flex gap-4 sm:gap-6">
+        <a href="#" class="text-sm font-medium hover:underline">Terms</a>
+        <a href="#" class="text-sm font-medium hover:underline">Privacy</a>
+        <a href="#" class="text-sm font-medium hover:underline">Contact</a>
+      </nav>
+    </div>
+  </footer>
+</body>
+</html>
