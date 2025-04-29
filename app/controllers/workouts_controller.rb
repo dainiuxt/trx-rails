@@ -1,10 +1,11 @@
 class WorkoutsController < ApplicationController
+  allow_unauthenticated_access only: %i[ index show ]
+  before_action :set_workout, only: %i[ show edit update ]
   def index
     @workouts = Workout.all
   end
 
   def show
-    @workout = Workout.find(params[:id])
   end
 
   def new
@@ -21,11 +22,9 @@ class WorkoutsController < ApplicationController
   end
 
   def edit
-    @workout = Workout.find(params[:id])
   end
 
   def update
-    @workout = Workout.find(params[:id])
     if @workout.update(workout_params)
       redirect_to @workout
     else
@@ -34,6 +33,10 @@ class WorkoutsController < ApplicationController
   end
 
   private
+    def set_workout
+      @workout = Workout.find(params[:id])
+    end
+
     def workout_params
       params.expect(workout: [ :name, :description, :exercises ])
     end

@@ -1,0 +1,14 @@
+<!-- Exercise Card -->
+<% @exercises.each do |exercise| %>
+  <div class="rounded-lg border bg-white shadow-sm">
+    <div class="p-0">
+      <img src="https://placehold.co/300x200/f97316/FFFFFF/png?text=<%= exercise.name %>" alt="TRX Chest Press" class="w-full object-cover h-[200px] rounded-t-lg">
+    </div>
+    <div class="p-6 pb-2">
+      <h3 class="text-lg font-semibold"><%= exercise.name %></h3>
+    </div>
+    <div class="p-6 pt-0">
+      <%= link_to "View Details", exercise, class: "w-full inline-flex items-center justify-center rounded-md border border-gray-200 px-4 py-2 text-sm font-medium" %>
+    </div>
+  </div>
+<% end %>

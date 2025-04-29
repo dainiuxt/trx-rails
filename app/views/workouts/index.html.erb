@@ -10,33 +10,7 @@
       </div>
     </div>
     <div class="grid gap-6 mt-8 md:grid-cols-2 lg:grid-cols-3">
-    <% @workouts.each do |workout| %>
-      <!-- Workout Card -->
-      <div class="rounded-lg border bg-white shadow-sm">
-        <div class="p-6">
-          <h3 class="text-lg font-semibold"><%= workout.name %></h3>
-          <p class="text-sm text-gray-500">20 min • Beginner • Strength</p>
-        </div>
-        <div class="p-6 pt-0">
-          <div class="flex items-center space-x-2 text-sm text-gray-500">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4">
-              <circle cx="12" cy="12" r="10"></circle>
-              <polyline points="12 6 12 12 16 14"></polyline>
-            </svg>
-            <span>20 min</span>
-          </div>
-        </div>
-        <div class="p-6 pt-0 flex justify-between">
-          <%= link_to "View Details", workout, class: "inline-flex items-center justify-center rounded-md border border-gray-200 px-4 py-2 text-sm font-medium" %>
-          <a href="timer.html" class="inline-flex items-center justify-center rounded-md bg-orange-500 px-4 py-2 text-sm font-medium text-white hover:bg-orange-600">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2 h-4 w-4">
-              <polygon points="5 3 19 12 5 21 5 3"></polygon>
-            </svg>
-            Start
-          </a>
-        </div>
-      </div>
-      <% end %>
+      <%= render "card" %>
     </div>
   </div>
 </section>
