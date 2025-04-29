@@ -6,20 +6,8 @@
     Back to Exercises
   <% end %>
   <div class="grid gap-8 md:grid-cols-2">
-    <div>
-      <img src="https://placehold.co/600x400/f97316/FFFFFF/png?text=<%= @exercise.name %>" alt="<%= @exercise.name %>" class="rounded-lg object-cover w-full">
 
-      <div class="mt-6 flex flex-wrap gap-2">
-        <div class="rounded-full bg-orange-300 px-3 py-1 text-sm text-orange-700"><%= @exercise.difficulty.name %></div>
-        <div class="rounded-full bg-orange-100 px-3 py-1 text-sm text-orange-700"><%= @exercise.category.name %></div>
-        <% if @exercise.muscle_groups.any? %>
-          <% @exercise.muscle_groups.each do |mg| %>
-            <div class="rounded-full border border-orange-300 bg-orange-100 px-3 py-1 text-sm text-orange-700"><%= mg.name %></div>
-          <% end %>
-        <% end %>
-
-      </div>
-    </div>
+    <%= render "featured_image" %>
 
     <div class="space-y-6">
       <div>
@@ -30,61 +18,13 @@
         <%= link_to "Edit Exercise", edit_exercise_path(@exercise), class: "inline-flex items-center text-sm font-medium text-orange-500 hover:underline mb-6" %>
       </div>
 
-      <!-- Exercise timing information -->
-      <div class="bg-gray-100 p-4 rounded-lg">
-        <h2 class="text-lg font-medium mb-2 flex items-center">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2 h-5 w-5 text-orange-500">
-            <rect width="18" height="18" x="3" y="3" rx="2"></rect>
-            <path d="M3 9h18"></path>
-            <path d="M9 21V9"></path  rx="2"></rect>
-            <path d="M3 9h18"></path>
-            <path d="M9 21V9"></path>
-          </svg>
-          Recommended Training
-        </h2>
-        <div class="grid grid-cols-3 gap-4">
-          <div>
-            <p class="text-sm text-gray-500">Sets</p>
-            <p class="font-medium"><%= @exercise.sets %></p>
-          </div>
-          <% unless @exercise.is_time_based %>
-          <div>
-            <p class="text-sm text-gray-500">Reps</p>
-            <p class="font-medium"><%= @exercise.reps %></p>
-          </div>
-          <% end %>
-          <% if @exercise.is_time_based %>
-          <div>
-            <p class="text-sm text-gray-500">Duration Time</p>
-            <p class="font-medium"><%= @exercise.duration_time %> sec</p>
-          </div>
-          <% end %>
-          <div>
-            <p class="text-sm text-gray-500">Rest</p>
-            <p class="font-medium"><%= @exercise.rest %> sec</p>
-          </div>
-        </div>
-      </div>
+      <%= render "timing" %>
 
-      <div class="flex gap-4">
-        <a href="timer.html?exercise=trx-chest-press" class="inline-flex items-center justify-center rounded-md bg-orange-500 px-4 py-2 text-sm font-medium text-white hover:bg-orange-600">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2 h-4 w-4">
-            <polygon points="5 3 19 12 5 21 5 3"></polygon>
-          </svg>
-          Start Exercise
-        </a>
-        <button class="inline-flex items-center justify-center rounded-md border border-gray-200 px-4 py-2 text-sm font-medium">Add to Workout</button>
-      </div>
+      <%= render "buttons" %>
 
       <div>
         <h2 class="text-xl font-bold mb-2">Instructions</h2>
-        <ol class="list-decimal pl-5 space-y-2">
-          <li>Stand facing away from the anchor point, holding the handles with arms extended at chest height.</li>
-          <li>Lean forward, keeping your body straight from head to heels.</li>
-          <li>Bend your elbows to lower your chest between the handles.</li>
-          <li>Press back to the starting position by extending your arms.</li>
-          <li>Keep your core engaged and maintain a straight body position throughout the movement.</li>
-        </ol>
+        <div><%= @exercise.instructions %></div>
       </div>
     </div>
   </div>
@@ -92,32 +32,17 @@
   <div class="mt-12 grid gap-8 md:grid-cols-2">
     <div>
       <h2 class="text-xl font-bold mb-4">Tips</h2>
-      <ul class="list-disc pl-5 space-y-2">
-        <li>To increase difficulty, move your feet closer to the anchor point.</li>
-        <li>To decrease difficulty, move your feet further from the anchor point.</li>
-        <li>Keep your elbows at a 45-degree angle to your body to protect your shoulders.</li>
-        <li>Don't let your hips sag or pike during the movement.</li>
-      </ul>
+      <div><%= @exercise.tips %></div>
     </div>
 
     <div>
-      <h2 class="text-xl font-bold mb-4">Variations</h2>
-      <ul class="list-disc pl-5 space-y-2">
-        <li>Single-arm TRX Chest Press</li>
-        <li>TRX Chest Press with Rotation</li>
-        <li>TRX Chest Press with Feet Elevated</li>
-      </ul>
+      <h2 class="text-xl font-bold mb-4">Precautions</h2>
+      <div><%= @exercise.precautions %></div>
     </div>
   </div>
 
-  <div class="mt-12">
-    <h2 class="text-xl font-bold mb-4">Related Exercises</h2>
-    <div class="grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+  <% if @exercise.video_link.present? %>
+    <%= render "video_card" %>
+  <% end %>
 
-      <!-- Related Exercises -->
-        <%= render "related_card" %>
-      <!-- END Related Exercises -->
-
-    </div>
-  </div>
 </div>

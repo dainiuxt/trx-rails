@@ -29,7 +29,7 @@
       </div>
       <div class="space-y-2">
         <%= form.label :description, "Exercise Description *", class: "text-sm font-medium" %>
-        <%= form.rich_text_area :description, placeholder: "Provide a brief description of the exercise and its benefits...", class: "w-full rounded-md border border-gray-200 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent" %>
+        <%= form.rich_text_area :description, placeholder: "Provide a brief description of the exercise and its benefits...", class: "trix-editor w-full rounded-md border border-gray-200 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent" %>
       </div>
     </div>
   </div>
@@ -42,26 +42,26 @@
     <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
       <div class="space-y-2">
         <%= form.label :sets, "Default Sets *", class: "text-sm font-medium" %>
-        <%= form.number_field :sets, class: "w-full rounded-md border border-gray-200 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent", only_integer: true, min: 1, max: 10, value: 3 %>
+        <%= form.number_field :sets, class: "w-full rounded-md border border-gray-200 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent", only_integer: true, min: 1, max: 10, value: @exercise.sets || 3 %>
       </div>
       <div class="space-y-2">
           <%= form.label :reps, "Default Reps", class: "text-sm font-medium" %>
-          <%= form.number_field :reps, class: "w-full rounded-md border border-gray-200 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent", only_integer: true, min: 1, max: 30, value: 10 %>
+          <%= form.number_field :reps, class: "w-full rounded-md border border-gray-200 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent", only_integer: true, min: 1, max: 30, value: @exercise.reps || 10 %>
       </div>
       <div class="space-y-2">
           <%= form.label :duration_time, "Duration Time (sec)", class: "text-sm font-medium" %>
-          <%= form.number_field :duration_time, class: "w-full rounded-md border border-gray-200 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent", only_integer: true, min: 0, max: 300, value: 0 %>
+          <%= form.number_field :duration_time, class: "w-full rounded-md border border-gray-200 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent", only_integer: true, min: 0, max: 300, value: @exercise.duration_time || 0 %>
       </div>
       <div class="space-y-2">
           <%= form.label :rest, "Rest time (sec) *", class: "text-sm font-medium" %>
-          <%= form.number_field :rest, class: "w-full rounded-md border border-gray-200 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent", only_integer: true, min: 0, max: 180, value: 30 %>
+          <%= form.number_field :rest, class: "w-full rounded-md border border-gray-200 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent", only_integer: true, min: 0, max: 180, value: @exercise.rest || 30 %>
       </div>
     </div>
     <div class="mt-4 space-y-2">
       <label class="text-sm font-medium">Exercise Type</label>
       <div class="flex space-x-4 mt-2">
         <div class="flex items-center">
-          <%= form.check_box :is_time_based, checked: false, class: "h-4 w-4 border-gray-300 text-orange-500 focus:ring-orange-500" %>
+          <%= form.check_box :is_time_based, class: "h-4 w-4 border-gray-300 text-orange-500 focus:ring-orange-500" %>
           <%= form.label :is_time_based, "Time-based Exercise (Don't forget to set the duration time!)", class: "ml-2 text-sm" %>
         </div>
       </div>
@@ -69,21 +69,41 @@
   </div>
   <!-- END Exercise Parameters -->
 
-  <div class="pt-6">
-    <%= form.submit class: "w-full inline-flex justify-center rounded-md bg-orange-500 px-4 py-3 text-sm font-medium text-white hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2" %>
-  </div>
-<% end %>
+  <!-- Exercise Instructions -->
+  <div class="pt-6 border-t border-gray-100">
+    <h3 class="text-lg font-medium mb-4">Exercise Instructions</h3>
+    <div class="space-y-4">
+      <div class="space-y-2">
+        <%= form.label :instructions, "Step-by-step instructions *", class: "text-sm font-medium" %>
+        <%= form.rich_text_area :instructions, placeholder: "1. Start by adjusting the TRX straps to mid-length.
+        2. Face the anchor point and grab the handles with both hands.
+        3. ...", class: "trix-editor w-full rounded-md border border-gray-200 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent" %>
+      </div>
+      <div class="space-y-2">
+        <%= form.label :tips, "Tips and Variations (optional)", class: "text-sm font-medium" %>
+        <%= form.rich_text_area :tips, placeholder: "- Keep your core engaged throughout the movement.
+        - For an easier variation, move your feet closer to the anchor point.
+        - ...", class: "trix-editor w-full rounded-md border border-gray-200 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent" %>
+      </div>
 
-<form class="p-6 space-y-6">
+      <div class="space-y-2">
+        <%= form.label :precautions, "Precautions (optional)", class: "text-sm font-medium" %>
+        <%= form.rich_text_area :precautions, placeholder: "- Avoid this exercise if you have shoulder injuries.
+        - Ensure the TRX anchor point is secure before beginning.", class: "trix-editor w-full rounded-md border border-gray-200 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent" %>
+      </div>
+    </div>
+  </div>
+  <!-- END Exercise Instructions -->
+
   <!-- Exercise Media -->
   <div class="pt-6 border-t border-gray-100">
     <h3 class="text-lg font-medium mb-4">Exercise Media</h3>
     
     <div class="space-y-4">
       <div class="space-y-2">
-        <label for="exercise-image" class="text-sm font-medium">Exercise Image *</label>
+        <%= form.label :featured_image, "Exercise Image", style: "display: block" %>
         <div class="flex items-center justify-center w-full">
-          <label for="exercise-image" class="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100">
+          <%= form.label :featured_image, class: "flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100" do %>
             <div class="flex flex-col items-center justify-center pt-5 pb-6">
               <svg class="w-8 h-8 mb-4 text-gray-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"/>
@@ -91,84 +111,21 @@
               <p class="mb-2 text-sm text-gray-500"><span class="font-semibold">Click to upload</span> or drag and drop</p>
               <p class="text-xs text-gray-500">PNG, JPG or GIF (MAX. 2MB)</p>
             </div>
-            <input id="exercise-image" type="file" class="hidden" accept="image/*" required />
-          </label>
+            <%= form.file_field :featured_image, class: "hidden", accept: "image/*" %>
+          <% end %>
         </div>
       </div>
 
       <div class="space-y-2">
-        <label for="video-url" class="text-sm font-medium">Video URL (optional)</label>
-        <input 
-          type="url" 
-          id="video-url" 
-          name="video-url" 
-          placeholder="e.g., https://youtube.com/watch?v=..."
-          class="w-full rounded-md border border-gray-200 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent"
-        >
+        <%= form.label :video_link, "Video URL (optional)", class: "text-sm font-medium" %>
+        <%= form.text_field :video_link, placeholder: "e.g., https://youtube.com/watch?v=...", class: "w-full rounded-md border border-gray-200 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent" %>
         <p class="text-xs text-gray-500">Add a YouTube or Vimeo URL demonstrating the exercise</p>
       </div>
     </div>
   </div>
+  <!-- END Exercise Media -->
 
-  <!-- Exercise Instructions -->
-  <div class="pt-6 border-t border-gray-100">
-    <h3 class="text-lg font-medium mb-4">Exercise Instructions</h3>
-    
-    <div class="space-y-4">
-      <div class="space-y-2">
-        <label for="instructions" class="text-sm font-medium">Step-by-Step Instructions *</label>
-        <textarea 
-          id="instructions" 
-          name="instructions" 
-          rows="5" 
-          required
-          class="w-full rounded-md border border-gray-200 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent"
-          placeholder="1. Start by adjusting the TRX straps to mid-length.
-2. Face the anchor point and grab the handles with both hands.
-3. ..."
-        ></textarea>
-      </div>
-
-      <div class="space-y-2">
-        <label for="tips" class="text-sm font-medium">Tips and Variations (optional)</label>
-        <textarea 
-          id="tips" 
-          name="tips" 
-          rows="3" 
-          class="w-full rounded-md border border-gray-200 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent"
-          placeholder="- Keep your core engaged throughout the movement.
-- For an easier variation, move your feet closer to the anchor point.
-- ..."
-        ></textarea>
-      </div>
-
-      <div class="space-y-2">
-        <label for="precautions" class="text-sm font-medium">Precautions (optional)</label>
-        <textarea 
-          id="precautions" 
-          name="precautions" 
-          rows="2" 
-          class="w-full rounded-md border border-gray-200 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent"
-          placeholder="- Avoid this exercise if you have shoulder injuries.
-- Ensure the TRX anchor point is secure before beginning."
-        ></textarea>
-      </div>
-    </div>
+  <div class="pt-6">
+    <%= form.submit class: "w-full inline-flex justify-center rounded-md bg-orange-500 px-4 py-3 text-sm font-medium text-white hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2" %>
   </div>
-
-  <!-- Submit Button -->
-  <div class="pt-6 border-t border-gray-100 flex flex-col sm:flex-row gap-4">
-    <button 
-      type="submit" 
-      class="flex-1 inline-flex justify-center rounded-md bg-orange-500 px-4 py-3 text-sm font-medium text-white hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2"
-    >
-      Create Exercise
-    </button>
-    <button 
-      type="button" 
-      class="flex-1 inline-flex justify-center rounded-md border border-gray-200 px-4 py-3 text-sm font-medium hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
-    >
-      Save as Draft
-    </button>
-  </div>
-</form>
+<% end %>

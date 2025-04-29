@@ -4,7 +4,6 @@ class Exercise < ApplicationRecord
 
   has_many :exercise_muscles, dependent: :destroy
   has_many :muscle_groups, through: :exercise_muscles
-  attr_accessor :muscle_group_ids
   after_save :update_muscle_groups
 
   def muscle_group_ids
@@ -15,6 +14,7 @@ class Exercise < ApplicationRecord
   has_rich_text :description
   has_rich_text :instructions
   has_rich_text :tips
+  has_rich_text :precautions
   belongs_to :difficulty
   belongs_to :category
 
@@ -25,6 +25,8 @@ class Exercise < ApplicationRecord
   validates :rest, presence: true, numericality: { only_integer: true }
   validates :reps, numericality: { only_integer: true }
   validates :reps, numericality: { only_integer: true }
+
+  attr_accessor :muscle_group_ids
 
   private
 

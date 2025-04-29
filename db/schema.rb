@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_04_27_162911) do
+ActiveRecord::Schema[8.0].define(version: 2025_04_29_164220) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -78,8 +78,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_27_162911) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "plans"
-    t.string "difficulty"
-    t.string "category"
     t.integer "sets"
     t.integer "reps"
     t.integer "rest"
@@ -87,6 +85,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_27_162911) do
     t.boolean "is_time_based", default: false, null: false
     t.integer "difficulty_id"
     t.integer "category_id"
+    t.string "video_link"
   end
 
   create_table "muscle_groups", force: :cascade do |t|

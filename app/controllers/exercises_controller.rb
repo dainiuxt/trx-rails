@@ -58,6 +58,7 @@ class ExercisesController < ApplicationController
                                 :description,
                                 :instructions,
                                 :tips,
+                                :precautions,
                                 :featured_image,
                                 :plans,
                                 :workouts,
@@ -69,6 +70,7 @@ class ExercisesController < ApplicationController
                                 :is_time_based,
                                 :difficulty_id,
                                 :category_id,
+                                :video_link,
                                 muscle_group_ids: [] ])
     end
 end

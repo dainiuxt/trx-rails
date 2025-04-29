@@ -1,0 +1,34 @@
+<div class="bg-gray-100 p-4 rounded-lg">
+  <h2 class="text-lg font-medium mb-2 flex items-center">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2 h-5 w-5 text-orange-500">
+      <rect width="18" height="18" x="3" y="3" rx="2"></rect>
+      <path d="M3 9h18"></path>
+      <path d="M9 21V9"></path  rx="2"></rect>
+      <path d="M3 9h18"></path>
+      <path d="M9 21V9"></path>
+    </svg>
+    Recommended Training
+  </h2>
+  <div class="grid grid-cols-3 gap-4">
+    <div>
+      <p class="text-sm text-gray-500">Sets</p>
+      <p class="font-medium"><%= @exercise.sets %></p>
+    </div>
+    <% unless @exercise.is_time_based %>
+    <div>
+      <p class="text-sm text-gray-500">Reps</p>
+      <p class="font-medium"><%= @exercise.reps %></p>
+    </div>
+    <% end %>
+    <% if @exercise.is_time_based %>
+    <div>
+      <p class="text-sm text-gray-500">Duration Time</p>
+      <p class="font-medium"><%= @exercise.duration_time %> sec</p>
+    </div>
+    <% end %>
+    <div>
+      <p class="text-sm text-gray-500">Rest</p>
+      <p class="font-medium"><%= @exercise.rest %> sec</p>
+    </div>
+  </div>
+</div>
