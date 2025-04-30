@@ -1,6 +1,10 @@
 class WorkoutsController < ApplicationController
   allow_unauthenticated_access only: %i[ index show ]
+  before_action :set_difficulty, only: %i[ new show edit update ]
+  before_action :set_workout_type, only: %i[ new show edit update ]
   before_action :set_workout, only: %i[ show edit update ]
+  Rails.logger.debug "Difficulties: #{@difficulties.inspect}"
+
   def index
     @workouts = Workout.all
   end
@@ -34,10 +38,23 @@ class WorkoutsController < ApplicationController
 
   private
     def set_workout
-      @workout = Workout.find(params[:id])
+      @workout = Workout.includes(:difficulty, :workout_type).find(params[:id])
+    end
+
+    def set_difficulty
+      @difficulties = Difficulty.all.order(:id)
+    end
+
+    def set_workout_type
+      @workout_types = WorkoutType.all.order(:id)
     end
 
     def workout_params
-      params.expect(workout: [ :name, :description, :exercises ])
+      params.expect(workout: [  :name,
+                                :workout_description,
+                                :difficulty_id,
+                                :workout_type_id,
+                                :duration,
+                                :exercises ])
     end
 end

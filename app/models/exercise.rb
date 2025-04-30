@@ -24,7 +24,6 @@ class Exercise < ApplicationRecord
   validates :sets, presence: true, numericality: { only_integer: true }
   validates :rest, presence: true, numericality: { only_integer: true }
   validates :reps, numericality: { only_integer: true }
-  validates :reps, numericality: { only_integer: true }
 
   attr_accessor :muscle_group_ids
 
