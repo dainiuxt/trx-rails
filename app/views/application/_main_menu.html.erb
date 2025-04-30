@@ -17,11 +17,9 @@
     <a href="/exercises" class="text-sm font-medium">Exercises</a>
     <%= link_to "Login", new_session_path, class:"rounded-md border border-gray-200 px-3 py-1.5 text-sm font-medium" unless authenticated? %>
     <%= button_to "Log out", session_path, method: :delete, class:"rounded-md bg-orange-500 px-3 py-1.5 text-sm font-medium text-white hover:bg-orange-600" if authenticated? %>
-
   </nav>
 
-  <!-- Mobile Navigation Button -->
-  <button class="md:hidden h-9 w-9 p-0 flex items-center justify-center">
+  <button data-action="mobile-menu#open" class="md:hidden h-9 w-9 p-0 flex items-center justify-center">
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6">
       <line x1="4" x2="20" y1="12" y2="12"></line>
       <line x1="4" x2="20" y1="6" y2="6"></line>

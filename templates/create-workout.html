@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create New Workout - TRX Workout Assistant</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            orange: {
+              50: "#fff7ed",
+              100: "#ffedd5",
+              200: "#fed7aa",
+              300: "#fdba74",
+              400: "#fb923c",
+              500: "#f97316",
+              600: "#ea580c",
+              700: "#c2410c",
+              800: "#9a3412",
+              900: "#7c2d12",
+            },
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+  </style>
+</head>
+<body class="flex min-h-screen flex-col bg-white text-gray-900">
+  <header class="sticky top-0 z-50 w-full border-b bg-white/95 backdrop-blur">
+    <div class="container mx-auto flex h-16 items-center justify-between px-4">
+      <div class="flex items-center">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6 text-orange-500">
+          <path d="M6.5 6.5h11"></path>
+          <path d="M6.5 17.5h11"></path>
+          <path d="M6.5 6.5c1.5 3 2 4.5 2 5.5s-.5 2.5-2 5.5"></path>
+          <path d="M17.5 6.5c-1.5 3-2 4.5-2 5.5s.5 2.5 2 5.5"></path>
+        </svg>
+        <span class="ml-2 text-xl font-bold">TRX Workout Assistant</span>
+      </div>
+
+      <!-- Desktop Navigation -->
+      <nav class="hidden md:flex items-center space-x-4">
+        <a href="index.html#exercises" class="text-sm font-medium">Exercises</a>
+        <a href="index.html#workouts" class="text-sm font-medium">Workouts</a>
+        <a href="index.html#timer" class="text-sm font-medium">Timer</a>
+        <button class="rounded-md border border-gray-200 px-3 py-1.5 text-sm font-medium">Sign In</button>
+        <button class="rounded-md bg-orange-500 px-3 py-1.5 text-sm font-medium text-white hover:bg-orange-600">Get Started</button>
+      </nav>
+
+      <!-- Mobile Navigation Button -->
+      <button class="md:hidden h-9 w-9 p-0 flex items-center justify-center">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6">
+          <line x1="4" x2="20" y1="12" y2="12"></line>
+          <line x1="4" x2="20" y1="6" y2="6"></line>
+          <line x1="4" x2="20" y1="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <main class="flex-1">
+    <section class="w-full py-12 md:py-24">
+      <div class="container mx-auto px-4 md:px-6">
+        <div class="flex flex-col items-center justify-center space-y-4 text-center mb-8">
+          <div class="space-y-2">
+            <h1 class="text-3xl font-bold tracking-tighter md:text-4xl">Create New Workout</h1>
+            <p class="max-w-[700px] text-gray-500 md:text-xl">
+              Design a custom TRX workout by selecting exercises and configuring sets, reps, and rest periods.
+            </p>
+          </div>
+        </div>
+
+        <div class="mx-auto max-w-4xl">
+          <div class="rounded-lg border bg-white shadow-sm overflow-hidden">
+            <div class="p-6 bg-orange-50 border-b">
+              <h2 class="text-xl font-semibold">Workout Details</h2>
+              <p class="text-sm text-gray-500 mt-1">Please fill out all required fields marked with an asterisk (*)</p>
+            </div>
+            
+            <form class="p-6 space-y-6">
+              <!-- Basic Information -->
+              <div class="space-y-4">
+                <div class="space-y-2">
+                  <label for="workout-name" class="text-sm font-medium">Workout Name *</label>
+                  <input 
+                    type="text" 
+                    id="workout-name" 
+                    name="workout-name" 
+                    required 
+                    placeholder="e.g., Full Body Strength"
+                    class="w-full rounded-md border border-gray-200 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+                  >
+                </div>
+
+                <div class="space-y-2">
+                  <label for="description" class="text-sm font-medium">Workout Description *</label>
+                  <textarea 
+                    id="description" 
+                    name="description" 
+                    rows="3" 
+                    required
+                    class="w-full rounded-md border border-gray-200 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+                    placeholder="Provide a brief description of the workout and its benefits..."
+                  ></textarea>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  <div class="space-y-2">
+                    <label for="difficulty" class="text-sm font-medium">Difficulty Level *</label>
+                    <select 
+                      id="difficulty" 
+                      name="difficulty" 
+                      required
+                      class="w-full rounded-md border border-gray-200 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+                    >
+                      <option value="">Select difficulty</option>
+                      <option value="beginner">Beginner</option>
+                      <option value="intermediate">Intermediate</option>
+                      <option value="advanced">Advanced</option>
+                    </select>
+                  </div>
+                  <div class="space-y-2">
+                    <label for="duration" class="text-sm font-medium">Estimated Duration (minutes) *</label>
+                    <input 
+                      type="number" 
+                      id="duration" 
+                      name="duration" 
+                      min="5" 
+                      max="120" 
+                      required
+                      class="w-full rounded-md border border-gray-200 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+                    >
+                  </div>
+                  <div class="space-y-2">
+                    <label for="workout-type" class="text-sm font-medium">Workout Type *</label>
+                    <select 
+                      id="workout-type" 
+                      name="workout-type" 
+                      required
+                      class="w-full rounded-md border border-gray-200 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+                    >
+                      <option value="">Select type</option>
+                      <option value="strength">Strength</option>
+                      <option value="cardio">Cardio</option>
+                      <option value="hiit">HIIT</option>
+                      <option value="flexibility">Flexibility</option>
+                      <option value="balance">Balance</option>
+                      <option value="core">Core</option>
+                      <option value="full-body">Full Body</option>
+                      <option value="upper-body">Upper Body</option>
+                      <option value="lower-body">Lower Body</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="space-y-2">
+                  <label class="text-sm font-medium">Workout Tags (optional)</label>
+                  <div class="flex flex-wrap gap-2 mt-2">
+                    <div class="inline-flex items-center rounded-full bg-orange-100 px-3 py-1 text-sm text-orange-700">
+                      <span>Strength</span>
+                      <button type="button" class="ml-1 h-4 w-4 rounded-full flex items-center justify-center hover:bg-orange-200">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                          <path d="M18 6 6 18"></path>
+                          <path d="m6 6 12 12"></path>
+                        </svg>
+                      </button>
+                    </div>
+                    <div class="inline-flex items-center rounded-full bg-orange-100 px-3 py-1 text-sm text-orange-700">
+                      <span>Core</span>
+                      <button type="button" class="ml-1 h-4 w-4 rounded-full flex items-center justify-center hover:bg-orange-200">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                          <path d="M18 6 6 18"></path>
+                          <path d="m6 6 12 12"></path>
+                        </svg>
+                      </button>
+                    </div>
+                    <button type="button" class="inline-flex items-center rounded-full border border-dashed border-gray-300 px-3 py-1 text-sm text-gray-600 hover:bg-gray-50">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-1">
+                        <path d="M12 5v14"></path>
+                        <path d="M5 12h14"></path>
+                      </svg>
+                      Add Tag
+                    </button>
+                  </div>
+                </div>
+
+                <div class="space-y-2">
+                  <label for="workout-image" class="text-sm font-medium">Workout Cover Image (optional)</label>
+                  <div class="flex items-center justify-center w-full">
+                    <label for="workout-image" class="flex flex-col items-center justify-center w-full h-40 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100">
+                      <div class="flex flex-col items-center justify-center pt-5 pb-6">
+                        <svg class="w-8 h-8 mb-4 text-gray-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
+                          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"/>
+                        </svg>
+                        <p class="mb-2 text-sm text-gray-500"><span class="font-semibold">Click to upload</span> or drag and drop</p>
+                        <p class="text-xs text-gray-500">PNG, JPG or GIF (MAX. 2MB)</p>
+                      </div>
+                      <input id="workout-image" type="file" class="hidden" accept="image/*" />
+                    </label>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Workout Structure -->
+              <div class="pt-6 border-t border-gray-100">
+                <div class="flex justify-between items-center mb-4">
+                  <h3 class="text-lg font-medium">Workout Exercises</h3>
+                  <button type="button" class="inline-flex items-center rounded-md bg-orange-500 px-3 py-1.5 text-sm font-medium text-white hover:bg-orange-600">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-1">
+                      <path d="M12 5v14"></path>
+                      <path d="M5 12h14"></path>
+                    </svg>
+                    Add Exercise
+                  </button>
+                </div>
+                
+                <div class="space-y-4">
+                  <!-- Exercise 1 -->
+                  <div class="border rounded-lg overflow-hidden">
+                    <div class="bg-gray-50 p-4 flex justify-between items-center">
+                      <div class="flex items-center">
+                        <span class="h-6 w-6 rounded-full bg-orange-500 text-white flex items-center justify-center text-sm font-medium">1</span>
+                        <h4 class="ml-2 font-medium">TRX Squat</h4>
+                      </div>
+                      <div class="flex items-center space-x-2">
+                        <button type="button" class="p-1 rounded-md hover:bg-gray-200">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="m18 15-6-6-6 6"></path>
+                          </svg>
+                        </button>
+                        <button type="button" class="p-1 rounded-md hover:bg-gray-200">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="m6 9 6 6 6-6"></path>
+                          </svg>
+                        </button>
+                        <button type="button" class="p-1 rounded-md hover:bg-gray-200 text-red-500">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M3 6h18"></path>
+                            <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path>
+                            <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path>
+                          </svg>
+                        </button>
+                      </div>
+                    </div>
+                    <div class="p-4">
+                      <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                        <div class="space-y-2">
+                          <label for="ex1-sets" class="text-sm font-medium">Sets</label>
+                          <input 
+                            type="number" 
+                            id="ex1-sets" 
+                            name="ex1-sets" 
+                            min="1" 
+                            max="10" 
+                            value="3" 
+                            class="w-full rounded-md border border-gray-200 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+                          >
+                        </div>
+                        <div class="space-y-2">
+                          <label for="ex1-reps" class="text-sm font-medium">Reps</label>
+                          <input 
+                            type="number" 
+                            id="ex1-reps" 
+                            name="ex1-reps" 
+                            min="1" 
+                            max="50" 
+                            value="10" 
+                            class="w-full rounded-md border border-gray-200 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+                          >
+                        </div>
+                        <div class="space-y-2">
+                          <label for="ex1-time" class="text-sm font-medium">Time (sec)</label>
+                          <input 
+                            type="number" 
+                            id="ex1-time" 
+                            name="ex1-time" 
+                            min="0" 
+                            max="300" 
+                            value="0" 
+                            class="w-full rounded-md border border-gray-200 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+                          >
+                        </div>
+                        <div class="space-y-2">
+                          <label for="ex1-rest" class="text-sm font-medium">Rest (sec)</label>
+                          <input 
+                            type="number" 
+                            id="ex1-rest" 
+                            name="ex1-rest" 
+                            min="0" 
+                            max="300" 
+                            value="30" 
+                            class="w-full rounded-md border border-gray-200 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+                          >
+                        </div>
+                      </div>
+                      <div class="mt-4">
+                        <label for="ex1-notes" class="text-sm font-medium">Notes (optional)</label>
+                        <input 
+                          type="text" 
+                          id="ex1-notes" 
+                          name="ex1-notes" 
+                          placeholder="Any specific instructions for this exercise..."
+                          class="mt-1 w-full rounded-md border border-gray-200 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+                        >
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Exercise 2 -->
+                  <div class="border rounded-lg overflow-hidden">
+                    <div class="bg-gray-50 p-4 flex justify-between items-center">
+                      <div class="flex items-center">
+                        <span class="h-6 w-6 rounded-full bg-orange-500 text-white flex items-center justify-center text-sm font-medium">2</span>
+                        <h4 class="ml-2 font-medium">TRX Rows</h4>
+                      </div>
+                      <div class="flex items-center space-x-2">
+                        <button type="button" class="p-1 rounded-md hover:bg-gray-200">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="m18 15-6-6-6 6"></path>
+                          </svg>
+                        </button>
+                        <button type="button" class="p-1 rounded-md hover:bg-gray-200">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="m6 9 6 6 6-6"></path>
+                          </svg>
+                        </button>
+                        <button type="button" class="p-1 rounded-md hover:bg-gray-200 text-red-500">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M3 6h18"></path>
+                            <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path>
+                            <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path>
+                          </svg>
+                        </button>
+                      </div>
+                    </div>
+                    <div class="p-4">
+                      <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                        <div class="space-y-2">
+                          <label for="ex2-sets" class="text-sm font-medium">Sets</label>
+                          <input 
+                            type="number" 
+                            id="ex2-sets" 
+                            name="ex2-sets" 
+                            min="1" 
+                            max="10" 
+                            value="3" 
+                            class="w-full rounded-md border border-gray-200 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+                          >
+                        </div>
+                        <div class="space-y-2">
+                          <label for="ex2-reps" class="text-sm font-medium">Reps</label>
+                          <input 
+                            type="number" 
+                            id="ex2-reps" 
+                            name="ex2-reps" 
+                            min="1" 
+                            max="50" 
+                            value="10" 
+                            class="w-full rounded-md border border-gray-200 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+                          >
+                        </div>
+                        <div class="space-y-2">
+                          <label for="ex2-time" class="text-sm font-medium">Time (sec)</label>
+                          <input 
+                            type="number" 
+                            id="ex2-time" 
+                            name="ex2-time" 
+                            min="0" 
+                            max="300" 
+                            value="0" 
+                            class="w-full rounded-md border border-gray-200 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+                          >
+                        </div>
+                        <div class="space-y-2">
+                          <label for="ex2-rest" class="text-sm font-medium">Rest (sec)</label>
+                          <input 
+                            type="number" 
+                            id="ex2-rest" 
+                            name="ex2-rest" 
+                            min="0" 
+                            max="300" 
+                            value="30" 
+                            class="w-full rounded-md border border-gray-200 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+                          >
+                        </div>
+                      </div>
+                      <div class="mt-4">
+                        <label for="ex2-notes" class="text-sm font-medium">Notes (optional)</label>
+                        <input 
+                          type="text" 
+                          id="ex2-notes" 
+                          name="ex2-notes" 
+                          placeholder="Any specific instructions for this exercise..."
+                          class="mt-1 w-full rounded-md border border-gray-200 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+                        >
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Add Exercise Button (Mobile) -->
+                  <button type="button" class="w-full md:hidden inline-flex items-center justify-center rounded-md border border-dashed border-gray-300 px-4 py-3 text-sm font-medium text-gray-600 hover:bg-gray-50">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2">
+                      <path d="M12 5v14"></path>
+                      <path d="M5 12h14"></path>
+                    </svg>
+                    Add Another Exercise
+                  </button>
+                </div>
+              </div>
+
+              <!-- Workout Settings -->
+              <div class="pt-6 border-t border-gray-100">
+                <h3 class="text-lg font-medium mb-4">Workout Settings</h3>
+                
+                <div class="space-y-4">
+                  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="space-y-2">
+                      <label for="rounds" class="text-sm font-medium">Number of Rounds</label>
+                      <input 
+                        type="number" 
+                        id="rounds" 
+                        name="rounds" 
+                        min="1" 
+                        max="10" 
+                        value="1" 
+                        class="w-full rounded-md border border-gray-200 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+                      >
+                      <p class="text-xs text-gray-500">How many times to repeat the entire workout</p>
+                    </div>
+                    <div class="space-y-2">
+                      <label for="round-rest" class="text-sm font-medium">Rest Between Rounds (sec)</label>
+                      <input 
+                        type="number" 
+                        id="round-rest" 
+                        name="round-rest" 
+                        min="0" 
+                        max="600" 
+                        value="60" 
+                        class="w-full rounded-md border border-gray-200 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+                      >
+                    </div>
+                  </div>
+
+                  <div class="space-y-2">
+                    <label class="text-sm font-medium">Workout Structure</label>
+                    <div class="flex space-x-4 mt-2">
+                      <div class="flex items-center">
+                        <input 
+                          type="radio" 
+                          id="structure-sequential" 
+                          name="workout-structure" 
+                          value="sequential" 
+                          checked
+                          class="h-4 w-4 border-gray-300 text-orange-500 focus:ring-orange-500"
+                        >
+                        <label for="structure-sequential" class="ml-2 text-sm">Sequential (one exercise after another)</label>
+                      </div>
+                      <div class="flex items-center">
+                        <input 
+                          type="radio" 
+                          id="structure-circuit" 
+                          name="workout-structure" 
+                          value="circuit" 
+                          class="h-4 w-4 border-gray-300 text-orange-500 focus:ring-orange-500"
+                        >
+                        <label for="structure-circuit" class="ml-2 text-sm">Circuit (complete all exercises, then repeat)</label>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="space-y-2">
+                    <label for="warmup" class="text-sm font-medium">Warm-up Instructions (optional)</label>
+                    <textarea 
+                      id="warmup" 
+                      name="warmup" 
+                      rows="2" 
+                      class="w-full rounded-md border border-gray-200 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+                      placeholder="Suggest 5-10 minutes of light cardio and dynamic stretching before starting the workout..."
+                    ></textarea>
+                  </div>
+
+                  <div class="space-y-2">
+                    <label for="cooldown" class="text-sm font-medium">Cool-down Instructions (optional)</label>
+                    <textarea 
+                      id="cooldown" 
+                      name="cooldown" 
+                      rows="2" 
+                      class="w-full rounded-md border border-gray-200 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+                      placeholder="Suggest 5-10 minutes of static stretching focusing on the muscles worked..."
+                    ></textarea>
+                  </div>
+
+                  <div class="flex items-start">
+                    <div class="flex items-center h-5">
+                      <input 
+                        id="public" 
+                        name="public" 
+                        type="checkbox" 
+                        checked
+                        class="h-4 w-4 rounded border-gray-300 text-orange-500 focus:ring-orange-500"
+                      >
+                    </div>
+                    <div class="ml-3 text-sm">
+                      <label for="public" class="font-medium text-gray-700">Make this workout public</label>
+                      <p class="text-gray-500">Allow other users to view and use this workout</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Submit Button -->
+              <div class="pt-6 border-t border-gray-100 flex flex-col sm:flex-row gap-4">
+                <button 
+                  type="submit" 
+                  class="flex-1 inline-flex justify-center rounded-md bg-orange-500 px-4 py-3 text-sm font-medium text-white hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2"
+                >
+                  Create Workout
+                </button>
+                <button 
+                  type="button" 
+                  class="flex-1 inline-flex justify-center rounded-md border border-gray-200 px-4 py-3 text-sm font-medium hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
+                >
+                  Save as Draft
+                </button>
+              </div>
+            </form>
+          </div>
+
+          <div class="mt-6 text-center">
+            <a href="index.html#workouts" class="inline-flex items-center text-sm font-medium text-orange-500 hover:underline">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-1 h-4 w-4">
+                <path d="m15 18-6-6 6-6"></path>
+              </svg>
+              Back to Workouts
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="border-t py-6 md:py-0 mt-12">
+    <div class="container mx-auto flex flex-col items-center justify-between gap-4 md:h-24 md:flex-row px-4">
+      <div class="flex items-center gap-2">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5 text-orange-500">
+          <path d="M6.5 6.5h11"></path>
+          <path d="M6.5 17.5h11"></path>
+          <path d="M6.5 6.5c1.5 3 2 4.5 2 5.5s-.5 2.5-2 5.5"></path>
+          <path d="M17.5 6.5c-1.5 3-2 4.5-2 5.5s.5 2.5 2 5.5"></path>
+        </svg>
+        <p class="text-sm text-gray-500">
+          © 2023 TRX Workout Assistant. All rights reserved.
+        </p>
+      </div>
+      <nav class="flex gap-4 sm:gap-6">
+        <a href="#" class="text-sm font-medium hover:underline">Terms</a>
+        <a href="#" class="text-sm font-medium hover:underline">Privacy</a>
+        <a href="#" class="text-sm font-medium hover:underline">Contact</a>
+      </nav>
+    </div>
+  </footer>
+</body>
+</html>

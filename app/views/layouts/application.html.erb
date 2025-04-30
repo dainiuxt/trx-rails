@@ -48,12 +48,30 @@
       body {
         font-family: 'Inter', sans-serif;
       }
+
+      /* Mobile menu transition */
+      .mobile-menu {
+        transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+      }
+      
+      .mobile-menu.hidden {
+        transform: translateX(100%);
+        opacity: 0;
+      }
+      
+      .mobile-menu.block {
+        transform: translateX(0);
+        opacity: 1;
+      }
     </style>
   </head>
   <body class="flex min-h-screen flex-col bg-white text-gray-900">
-    <header class="sticky top-0 z-50 w-full border-b bg-white/95 backdrop-blur">
-      <%= render "application/main_menu" %>
-    </header>
+    <div data-controller="mobile-menu" data-action="keydown@window->mobile-menu#closeWithEscape">
+      <header class="sticky top-0 z-50 w-full border-b bg-white/95 backdrop-blur">
+        <%= render "application/main_menu" %>
+      </header>
+      <%= render "mobile_menu" %>
+    </div>
     <main class="flex-1">
       <%= yield %>
     </main>
