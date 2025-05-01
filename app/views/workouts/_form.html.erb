@@ -26,6 +26,8 @@
       </div>
     </div>
 
+    <%= render "workout_structure" %>
+
     <!-- Submit Button -->
     <%= form.submit class: "w-full inline-flex justify-center rounded-md bg-orange-500 px-4 py-3 text-sm font-medium text-white hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2" %>
   </div>
@@ -33,126 +35,4 @@
 <% end %>
 </div>
 
-  <!-- Workout Structure -->
-  <div class="pt-6 border-t border-gray-100">
-    <div class="flex justify-between items-center mb-4">
-      <h3 class="text-lg font-medium">Workout Exercises</h3>
-      <button type="button" class="inline-flex items-center rounded-md bg-orange-500 px-3 py-1.5 text-sm font-medium text-white hover:bg-orange-600">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-1">
-          <path d="M12 5v14"></path>
-          <path d="M5 12h14"></path>
-        </svg>
-        Add Exercise
-      </button>
-    </div>
-    
-    <div class="space-y-4">
-      <!-- Exercise 1 -->
-      <div class="border rounded-lg overflow-hidden">
-        <div class="bg-gray-50 p-4 flex justify-between items-center">
-          <div class="flex items-center">
-            <span class="h-6 w-6 rounded-full bg-orange-500 text-white flex items-center justify-center text-sm font-medium">1</span>
-            <h4 class="ml-2 font-medium">TRX Squat</h4>
-          </div>
-          <div class="flex items-center space-x-2">
-            <button type="button" class="p-1 rounded-md hover:bg-gray-200">
-              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="m18 15-6-6-6 6"></path>
-              </svg>
-            </button>
-            <button type="button" class="p-1 rounded-md hover:bg-gray-200">
-              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="m6 9 6 6 6-6"></path>
-              </svg>
-            </button>
-            <button type="button" class="p-1 rounded-md hover:bg-gray-200 text-red-500">
-              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M3 6h18"></path>
-                <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path>
-                <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path>
-              </svg>
-            </button>
-          </div>
-        </div>
-        <div class="p-4">
-          <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-            <div class="space-y-2">
-              <label for="ex1-sets" class="text-sm font-medium">Sets</label>
-              <input 
-                type="number" 
-                id="ex1-sets" 
-                name="ex1-sets" 
-                min="1" 
-                max="10" 
-                value="3" 
-                class="w-full rounded-md border border-gray-200 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent"
-              >
-            </div>
-            <div class="space-y-2">
-              <label for="ex1-reps" class="text-sm font-medium">Reps</label>
-              <input 
-                type="number" 
-                id="ex1-reps" 
-                name="ex1-reps" 
-                min="1" 
-                max="50" 
-                value="10" 
-                class="w-full rounded-md border border-gray-200 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent"
-              >
-            </div>
-            <div class="space-y-2">
-              <label for="ex1-time" class="text-sm font-medium">Time (sec)</label>
-              <input 
-                type="number" 
-                id="ex1-time" 
-                name="ex1-time" 
-                min="0" 
-                max="300" 
-                value="0" 
-                class="w-full rounded-md border border-gray-200 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent"
-              >
-            </div>
-            <div class="space-y-2">
-              <label for="ex1-rest" class="text-sm font-medium">Rest (sec)</label>
-              <input 
-                type="number" 
-                id="ex1-rest" 
-                name="ex1-rest" 
-                min="0" 
-                max="300" 
-                value="30" 
-                class="w-full rounded-md border border-gray-200 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent"
-              >
-            </div>
-          </div>
-          <div class="mt-4">
-            <label for="ex1-notes" class="text-sm font-medium">Notes (optional)</label>
-            <input 
-              type="text" 
-              id="ex1-notes" 
-              name="ex1-notes" 
-              placeholder="Any specific instructions for this exercise..."
-              class="mt-1 w-full rounded-md border border-gray-200 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent"
-            >
-          </div>
-        </div>
-      </div>
 
-      <!-- Add Exercise Button (Mobile) -->
-      <button type="button" class="w-full md:hidden inline-flex items-center justify-center rounded-md border border-dashed border-gray-300 px-4 py-3 text-sm font-medium text-gray-600 hover:bg-gray-50">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2">
-          <path d="M12 5v14"></path>
-          <path d="M5 12h14"></path>
-        </svg>
-        Add Another Exercise
-      </button>
-    </div>
-  </div>
-
-  <div class="pt-6 border-t border-gray-100 flex flex-col sm:flex-row gap-4">
-    <button 
-      type="submit" 
-      class="flex-1 inline-flex justify-center rounded-md bg-orange-500 px-4 py-3 text-sm font-medium text-white hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2"
-    >
-      Create Workout
-    </button>
