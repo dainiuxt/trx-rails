@@ -1,5 +1,3 @@
-<%= debug @workouts %>
-
 <div class="container mx-auto px-4 py-8 md:px-6 md:py-12">
   <%= link_to workouts_path, class: "inline-flex items-center text-sm font-medium text-orange-500 hover:underline mb-6" do %>
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-1 h-4 w-4">
@@ -13,20 +11,20 @@
       <h1 class="text-3xl font-bold"><%= @workout.name %></h1>
 
       <div class="mt-2 flex flex-wrap gap-2">
-        <div class="rounded-full bg-orange-100 px-3 py-1 text-sm text-orange-700">Beginner</div>
-        <div class="rounded-full bg-orange-100 px-3 py-1 text-sm text-orange-700">Strength</div>
+        <div class="rounded-full bg-orange-100 px-3 py-1 text-sm text-orange-700"><%= @workout.difficulty.name %></div>
+        <div class="rounded-full bg-orange-100 px-3 py-1 text-sm text-orange-700"><%= @workout.workout_type.name %></div>
         <div class="rounded-full bg-orange-100 px-3 py-1 text-sm text-orange-700 flex items-center">
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-1 h-3 w-3">
             <circle cx="12" cy="12" r="10"></circle>
             <polyline points="12 6 12 12 16 14"></polyline>
           </svg>
-          20 min
+          <%= @workout.duration %> min.
         </div>
       </div>
 
-      <p class="mt-4 text-gray-500">
-        A full-body workout designed for beginners to build foundational strength using the TRX suspension trainer. This workout targets all major muscle groups with simple, effective exercises.
-      </p>
+      <div class="mt-4 text-gray-500">
+        <%= @workout.workout_description%>
+      </div>
 
       <div class="mt-6 flex gap-4">
         <a href="timer.html?workout=beginner-full-body" class="inline-flex items-center justify-center rounded-md bg-orange-500 px-4 py-2 text-sm font-medium text-white hover:bg-orange-600">

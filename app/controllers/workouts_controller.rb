@@ -3,7 +3,6 @@ class WorkoutsController < ApplicationController
   before_action :set_difficulty, only: %i[ new show edit update ]
   before_action :set_workout_type, only: %i[ new show edit update ]
   before_action :set_workout, only: %i[ show edit update ]
-  Rails.logger.debug "Difficulties: #{@difficulties.inspect}"
 
   def index
     @workouts = Workout.all
