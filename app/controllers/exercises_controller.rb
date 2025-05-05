@@ -4,6 +4,7 @@ class ExercisesController < ApplicationController
   before_action :set_category, only: %i[ new show edit update ]
   before_action :set_muscle_groups, only: %i[ new show edit update ]
   before_action :set_exercise, only: %i[ show edit update ]
+  before_action :set_workouts, only: %i[ new show edit update ]
 
   def index
     @exercises = Exercise.all
@@ -53,6 +54,10 @@ class ExercisesController < ApplicationController
       @muscle_groups = MuscleGroup.all
     end
 
+    def set_workouts
+      @workouts = Workout.all
+    end
+
     def exercise_params
       params.expect(exercise: [ :name,
                                 :description,
@@ -61,7 +66,6 @@ class ExercisesController < ApplicationController
                                 :precautions,
                                 :featured_image,
                                 :plans,
-                                :workouts,
                                 :difficulty,
                                 :sets,
                                 :reps,
@@ -71,6 +75,7 @@ class ExercisesController < ApplicationController
                                 :difficulty_id,
                                 :category_id,
                                 :video_link,
+                                workout_ids: [],
                                 muscle_group_ids: [] ])
     end
 end

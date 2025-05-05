@@ -15,6 +15,11 @@ Rails.application.routes.draw do
   root "workouts#index"
 
   get "/workouts", to: "workouts#index"
-  resources :workouts
-  resources :exercises
+  resources :workouts do
+    resources :exercises
+  end
+  resources :exercises do
+    resources :workouts
+  end
+
 end

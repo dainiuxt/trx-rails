@@ -3,6 +3,7 @@ class WorkoutsController < ApplicationController
   before_action :set_difficulty, only: %i[ new show edit update ]
   before_action :set_workout_type, only: %i[ new show edit update ]
   before_action :set_workout, only: %i[ show edit update ]
+  before_action :set_exercises, only: %i[ new show edit update ]
 
   def index
     @workouts = Workout.all
@@ -37,7 +38,7 @@ class WorkoutsController < ApplicationController
 
   private
     def set_workout
-      @workout = Workout.includes(:difficulty, :workout_type).find(params[:id])
+      @workout = Workout.includes(:difficulty, :workout_type, :exercises).find(params[:id])
     end
 
     def set_difficulty
@@ -48,12 +49,16 @@ class WorkoutsController < ApplicationController
       @workout_types = WorkoutType.all.order(:id)
     end
 
+    def set_exercises
+      @exercises = Exercise.all
+    end
+
     def workout_params
       params.expect(workout: [  :name,
                                 :workout_description,
                                 :difficulty_id,
                                 :workout_type_id,
                                 :duration,
-                                :exercises ])
+                                exercise_ids: [] ])
     end
 end

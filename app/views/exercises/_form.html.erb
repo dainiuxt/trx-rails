@@ -35,6 +35,23 @@
   </div>
   <!-- END Basic Information -->
 
+  <!-- Workouts -->
+  <div class="space-y-4">
+    <div class="space-y-2">
+      <div class="space-y-2">
+        <label class="text-sm font-medium">Exercise Included in These Workouts</label>
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-2 mt-2">
+          <%= form.collection_check_boxes :workout_ids, @workouts, :id, :name do |workout| %>
+            <div class="flex items-center">
+              <%= workout.check_box class: "h-4 w-4 rounded border-gray-300 text-orange-500 focus:ring-orange-500" %>
+              <%= workout.label class: "ml-2 text-sm" %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- Exercise Parameters -->
   <div class="pt-6 border-t border-gray-100">
     <h3 class="text-lg font-medium mb-4">Default Exercise Parameters</h3>

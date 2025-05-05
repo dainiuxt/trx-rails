@@ -33,7 +33,9 @@
           </svg>
           Start Workout
         </a>
-        <button class="inline-flex items-center justify-center rounded-md border border-gray-200 px-4 py-2 text-sm font-medium">Save Workout</button>
+        <%= link_to edit_workout_path(@workout), class: "inline-flex items-center justify-center rounded-md border border-gray-200 px-4 py-2 text-sm font-medium" do %>
+          Edit Workout
+        <% end %>
       </div>
     </div>
 
@@ -44,9 +46,7 @@
   <div class="mt-12">
     <h2 class="text-2xl font-bold mb-6">Workout Exercises</h2>
     <div class="space-y-6">
-
-      <%= render "workout_exercise" %>
-
+      <%= render "workout_exercises" %>
     </div>
   </div>
 </div>
