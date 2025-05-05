@@ -19,10 +19,10 @@
       <div class="space-y-2">
         <label class="text-sm font-medium">Target Muscle Groups *</label>
         <div class="grid grid-cols-2 md:grid-cols-3 gap-2 mt-2">
-          <%= form.collection_check_boxes :muscle_group_ids, @muscle_groups, :id, :name do |muscle_group| %>
+          <% MuscleGroup.all.each do |muscle_group| %>
             <div class="flex items-center">
-              <%= muscle_group.check_box class: "h-4 w-4 rounded border-gray-300 text-orange-500 focus:ring-orange-500" %>
-              <%= muscle_group.label class: "ml-2 text-sm" %>
+              <%= check_box_tag "exercise[muscle_group_ids][]", muscle_group.id, @exercise.muscle_groups.include?(muscle_group), class: "h-4 w-4 rounded border-gray-300 text-orange-500 focus:ring-orange-500" %>
+              <span class="ml-2 text-sm" ><%= muscle_group.name %></span>
             </div>
           <% end %>
         </div>
@@ -41,10 +41,10 @@
       <div class="space-y-2">
         <label class="text-sm font-medium">Exercise Included in These Workouts</label>
         <div class="grid grid-cols-2 md:grid-cols-3 gap-2 mt-2">
-          <%= form.collection_check_boxes :workout_ids, @workouts, :id, :name do |workout| %>
+          <% Workout.all.each do |workout| %>
             <div class="flex items-center">
-              <%= workout.check_box class: "h-4 w-4 rounded border-gray-300 text-orange-500 focus:ring-orange-500" %>
-              <%= workout.label class: "ml-2 text-sm" %>
+              <%= check_box_tag "exercise[workout_ids][]", workout.id, @exercise.workouts.include?(workout), class: "h-4 w-4 rounded border-gray-300 text-orange-500 focus:ring-orange-500" %>
+              <span class="ml-2 text-sm" ><%= workout.name %></span>
             </div>
           <% end %>
         </div>
