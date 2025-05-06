@@ -2,7 +2,11 @@
 <% @exercises.each do |exercise| %>
   <div class="rounded-lg border bg-white shadow-sm">
     <div class="p-0">
-      <img src="https://placehold.co/300x200/f97316/FFFFFF/png?text=<%= exercise.name %>" alt="TRX Chest Press" class="w-full object-cover h-[200px] rounded-t-lg">
+      <% if exercise.featured_image.attached? %>
+        <%= image_tag exercise.featured_image, alt: exercise.name, class: "w-full object-cover h-[200px] rounded-t-lg" %>
+      <% else %>
+        <img src="https://placehold.co/300x200/f97316/FFFFFF/png?text=<%= exercise.name %>" alt="<%= exercise.name %>" class="w-full object-cover h-[200px] rounded-t-lg">
+      <% end %>
     </div>
     <div class="p-6 pb-2">
       <h3 class="text-lg font-semibold"><%= exercise.name %></h3>

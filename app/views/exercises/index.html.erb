@@ -3,9 +3,9 @@
   <div class="container mx-auto px-4 md:px-6">
     <div class="flex flex-col items-center justify-center space-y-4 text-center">
       <div class="space-y-2">
-        <h2 class="text-3xl font-bold tracking-tighter md:text-4xl">Exercise Library</h2>
+        <h2 class="text-3xl font-bold tracking-tighter md:text-4xl">Exercises Library</h2>
         <p class="max-w-[900px] text-gray-500 md:text-xl">
-          Explore our comprehensive collection of TRX exercises categorized by muscle group.
+          Explore our comprehensive collection of TRX exercises categorized type.
         </p>
       </div>
     </div>
@@ -14,21 +14,21 @@
     <div class="mt-8 w-full max-w-4xl mx-auto">
       <!-- Mobile Tabs (Vertical) -->
       <div class="flex flex-col w-full md:hidden space-y-1">
-        <button class="w-full justify-start text-left px-4 py-3 border border-gray-200 rounded-md bg-orange-100 text-orange-800">Upper Body</button>
-        <button class="w-full justify-start text-left px-4 py-3 border border-gray-200 rounded-md">Lower Body</button>
-        <button class="w-full justify-start text-left px-4 py-3 border border-gray-200 rounded-md">Core</button>
-        <button class="w-full justify-start text-left px-4 py-3 border border-gray-200 rounded-md">Full Body</button>
-        <button class="w-full justify-start text-left px-4 py-3 border border-gray-200 rounded-md">Cardio</button>
+        <%= link_to "All", exercises_path, 
+        class: "w-full justify-start text-left px-4 py-3 border border-gray-200 rounded-md bg-orange-100 text-orange-800 #{params[:category_id].blank? ? 'bg-orange-100 text-orange-800 border-orange-200' : 'bg-white border-gray-200 hover:bg-gray-50'}" %>
+        <% @categories.each do |category| %>
+          <%= link_to category.name, exercises_path(category_id: category.id), class: "w-full justify-start text-left px-4 py-3 border border-gray-200 rounded-md bg-orange-100 text-orange-800 #{params[:category_id].to_s == category.id.to_s ? 'bg-orange-100 text-orange-800 border-orange-200' : 'bg-white border-gray-200 hover:bg-gray-50'}" %>
+        <% end %>
       </div>
 
       <!-- Desktop Tabs (Horizontal) -->
       <div class="hidden md:block">
         <div class="inline-flex h-10 items-center justify-center rounded-md bg-gray-100 p-1 text-gray-500 w-full">
-          <button class="inline-flex items-center justify-center whitespace-nowrap rounded-sm px-3 py-1.5 text-sm font-medium bg-white text-gray-900 shadow-sm flex-1 min-w-[120px]">Upper Body</button>
-          <button class="inline-flex items-center justify-center whitespace-nowrap rounded-sm px-3 py-1.5 text-sm font-medium flex-1 min-w-[120px]">Lower Body</button>
-          <button class="inline-flex items-center justify-center whitespace-nowrap rounded-sm px-3 py-1.5 text-sm font-medium flex-1 min-w-[120px]">Core</button>
-          <button class="inline-flex items-center justify-center whitespace-nowrap rounded-sm px-3 py-1.5 text-sm font-medium flex-1 min-w-[120px]">Full Body</button>
-          <button class="inline-flex items-center justify-center whitespace-nowrap rounded-sm px-3 py-1.5 text-sm font-medium flex-1 min-w-[120px]">Cardio</button>
+          <%= link_to "All", exercises_path, 
+          class: "inline-flex items-center justify-center whitespace-nowrap rounded-sm px-3 py-1.5 text-sm font-medium bg-white text-gray-900 shadow-sm flex-1 min-w-[120px] #{params[:category_id].blank? ? 'bg-orange-100 text-orange-800 border-orange-200' : 'bg-white border-gray-200 hover:bg-gray-50'}" %>
+          <% @categories.each do |category| %>
+            <%= link_to category.name, exercises_path(category_id: category.id), class: "inline-flex items-center justify-center whitespace-nowrap rounded-sm px-3 py-1.5 text-sm font-medium bg-white text-gray-900 shadow-sm flex-1 min-w-[120px] #{params[:category_id].to_s == category.id.to_s ? 'bg-orange-100 text-orange-800 border-orange-200' : 'bg-white border-gray-200 hover:bg-gray-50'}" %>
+          <% end %>
         </div>
       </div>
 

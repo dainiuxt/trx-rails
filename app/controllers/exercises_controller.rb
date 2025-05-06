@@ -7,7 +7,13 @@ class ExercisesController < ApplicationController
   before_action :set_workouts, only: %i[ new show edit update ]
 
   def index
-    @exercises = Exercise.all
+    @categories = Category.all
+    if params[:category_id].present?
+      @category = Category.find(params[:category_id])
+      @exercises = @category.exercises
+    else
+      @exercises = Exercise.all
+    end
   end
 
   def show
