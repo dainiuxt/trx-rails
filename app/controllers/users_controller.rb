@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   allow_unauthenticated_access only: %i[ new create ]
+  before_action :require_admin, only: %i[ index ]
 
   def new
     @user = User.new
@@ -24,5 +25,11 @@ class UsersController < ApplicationController
                           :password,
                           :password_confirmation,
                           :username ])
+  end
+
+  def require_admin
+    unless Current.user.admin?
+      redirect_to root_path, alert: "You are not allowed to access this page."
+    end
   end
 end

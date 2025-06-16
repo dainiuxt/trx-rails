@@ -73,6 +73,8 @@
       <%= render "application/mobile_menu" %>
     </div>
     <main class="flex-1">
+      <%= tag.div(flash[:alert], style: "color:red") if flash[:alert] %>
+      <%= tag.div(flash[:notice], style: "color:green") if flash[:notice] %>
       <%= yield %>
     </main>
     <%= render "application/footer" %>
