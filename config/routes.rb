@@ -25,5 +25,11 @@ Rails.application.routes.draw do
   resource :session
   resources :passwords, param: :token
 
-  resources :users, only: %i[ new create index ]
+  resources :users, only: %i[ new create index destroy edit ]
+  resources :users do
+    member do
+      patch :approve
+      patch :suspend
+    end
+  end
 end

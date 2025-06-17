@@ -1,9 +1,24 @@
 class UsersController < ApplicationController
   allow_unauthenticated_access only: %i[ new create ]
-  before_action :require_admin, only: %i[ index ]
+  before_action :require_admin, only: %i[ index destroy ]
+  before_action :get_user, only: %i[ destroy update edit approve suspend ]
+
+  def index
+    @users = User.all
+  end
 
   def new
     @user = User.new
+  end
+
+  def approve
+    @user.update(status: 'approved')
+    redirect_to users_path, notice: 'User was approved.'
+  end
+
+  def suspend
+    @user.update(status: 'pending')
+    redirect_to users_path, notice: 'User was suspended.'
   end
 
   def create
@@ -16,7 +31,20 @@ class UsersController < ApplicationController
     end
   end
 
-  def index
+  def edit
+  end
+
+  def update
+    if @user.update(user_params)
+      redirect_to users_path, notice: 'User was successfully approved.'
+    else
+      redirect_to users_path, status: :unprocessable_entity
+    end
+  end
+
+  def destroy
+    @user.destroy
+    redirect_to users_path, notice: 'User was successfully destroyed.'
   end
 
   private
@@ -25,6 +53,10 @@ class UsersController < ApplicationController
                           :password,
                           :password_confirmation,
                           :username ])
+  end
+
+  def get_user
+    @user = User.find(params[:id])
   end
 
   def require_admin
