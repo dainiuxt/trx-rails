@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   allow_unauthenticated_access only: %i[ new create ]
-  before_action :require_admin, only: %i[ index destroy ]
+  before_action :require_admin, only: %i[ index destroy update edit approve suspend ]
   before_action :get_user, only: %i[ destroy update edit approve suspend ]
 
   def index
@@ -12,13 +12,13 @@ class UsersController < ApplicationController
   end
 
   def approve
-    @user.update(status: 'approved')
-    redirect_to users_path, notice: 'User was approved.'
+    @user.update(status: "approved")
+    redirect_to users_path, notice: "User was approved."
   end
 
   def suspend
-    @user.update(status: 'pending')
-    redirect_to users_path, notice: 'User was suspended.'
+    @user.update(status: "pending")
+    redirect_to users_path, notice: "User was suspended."
   end
 
   def create
@@ -36,7 +36,7 @@ class UsersController < ApplicationController
 
   def update
     if @user.update(user_params)
-      redirect_to users_path, notice: 'User was successfully approved.'
+      redirect_to users_path, notice: "User was successfully approved."
     else
       redirect_to users_path, status: :unprocessable_entity
     end
@@ -44,7 +44,7 @@ class UsersController < ApplicationController
 
   def destroy
     @user.destroy
-    redirect_to users_path, notice: 'User was successfully destroyed.'
+    redirect_to users_path, notice: "User was successfully destroyed."
   end
 
   private
