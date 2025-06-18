@@ -1,5 +1,6 @@
 class ExercisesController < ApplicationController
   allow_unauthenticated_access only: %i[ index show ]
+  before_action :require_admin, only: %i[ new edit update ]
   before_action :set_difficulty, only: %i[ new show edit update ]
   before_action :set_category, only: %i[ new show edit update ]
   before_action :set_muscle_groups, only: %i[ new show edit update ]

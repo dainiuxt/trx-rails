@@ -59,9 +59,9 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
-  def require_admin
-    unless Current.user.admin?
-      redirect_to root_path, alert: "You are not allowed to access this page."
-    end
-  end
+  # def require_admin
+  #   unless Current.user.admin?
+  #     redirect_to root_path, alert: "You are not allowed to access this page."
+  #   end
+  # end
 end

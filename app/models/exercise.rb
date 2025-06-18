@@ -1,5 +1,5 @@
 class Exercise < ApplicationRecord
-  has_many :plans
+  has_many :plans, dependent: :destroy
   has_many :workouts, through: :plans
 
   has_many :exercise_muscles, dependent: :destroy
@@ -37,7 +37,7 @@ class Exercise < ApplicationRecord
 
   def update_muscle_groups
     # Convert string IDs to integers
-    desired_ids = muscle_group_ids.reject(&:blank?).map(&:to_i)
+    desired_ids = Array(muscle_group_ids).reject(&:blank?).map(&:to_i)
 
     # Remove unwanted associations
     exercise_muscles.where.not(muscle_group_id: desired_ids).destroy_all
@@ -50,13 +50,10 @@ class Exercise < ApplicationRecord
   end
 
   def update_workouts
-    # Convert string IDs to integers
-    desired_ids = workout_ids.reject(&:blank?).map(&:to_i)
+    desired_ids = Array(workout_ids).reject(&:blank?).map(&:to_i)
 
-    # Remove unwanted associations
     plans.where.not(workout_id: desired_ids).destroy_all
 
-    # Add new associations
     existing_ids = plans.pluck(:workout_id)
     (desired_ids - existing_ids).each do |id|
       plans.create!(workout_id: id)

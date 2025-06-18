@@ -49,4 +49,10 @@ module Authentication
       Current.session.destroy
       cookies.delete(:session_id)
     end
+
+    def require_admin
+      unless Current.user.admin?
+        redirect_to root_path, alert: "You are not allowed to access this page."
+      end
+    end
 end
