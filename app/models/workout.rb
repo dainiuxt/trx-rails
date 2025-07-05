@@ -4,6 +4,7 @@ class Workout < ApplicationRecord
   belongs_to :workout_type
 
   has_many :plans, dependent: :destroy
+  accepts_nested_attributes_for :plans, allow_destroy: true
   has_many :exercises, through: :plans
   after_save :update_exercises
 

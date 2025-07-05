@@ -1,0 +1,26 @@
+<div class="grid grid-cols-6 gap-4 border rounded p-4 mb-4">
+  <div class="col-span-2">
+    <%= form.label :exercise_id, "Exercise" %>
+    <%= form.collection_select :exercise_id, Exercise.all, :id, :name, {}, class: "w-full" %>
+  </div>
+  <div>
+    <%= form.label :sets %>
+    <%= form.number_field :sets, class: "w-full" %>
+  </div>
+  <div>
+    <%= form.label :reps %>
+    <%= form.number_field :reps, class: "w-full" %>
+  </div>
+  <div>
+    <%= form.label :duration %>
+    <%= form.number_field :duration_time, class: "w-full" %>
+  </div>
+  <div>
+    <%= form.label :is_time_based %>
+    <%= form.check_box :is_time_based, class: "w-full" %>
+  </div>
+  <div>
+    <%= link_to "Remove", "#", data: { action: "plan#remove" }, class: "text-red-500 text-sm mt-6 block" %>
+    <%= form.hidden_field :_destroy %>
+  </div>
+</div>

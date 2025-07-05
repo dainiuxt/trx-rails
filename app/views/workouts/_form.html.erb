@@ -31,12 +31,19 @@
     <div class="space-y-2">
       <label class="text-sm font-medium">Exercises</label>
       <div class="grid grid-cols-2 md:grid-cols-3 gap-2 mt-2">
-        <%= form.collection_check_boxes :exercise_ids, @exercises, :id, :name do |exercise| %>
-          <div class="flex items-center">
-            <%= exercise.check_box class: "h-4 w-4 rounded border-gray-300 text-orange-500 focus:ring-orange-500" %>
-            <%= exercise.label class: "ml-2 text-sm" %>
-          </div>
-        <% end %>
+        <div data-controller="plan" data-plan-target="plans">
+          <%= form.fields_for :plans do |plan_form| %>
+            <div class="nested-plan" data-new-record="<%= plan_form.object.new_record? %>">
+              <%= render "plan_fields", form: plan_form %>
+            </div>
+          <% end %>
+        </div>
+        <button data-action="plan#add" class="mt-4 text-sm text-orange-600 hover:underline">+ Add Exercise to Workout</button>
+        <template data-plan-target="template">
+          <% form.fields_for :plans, Plan.new, child_index: "NEW_RECORD" do |plan_form| %>
+            <%= render "plan_fields", form: plan_form %>
+          <% end %>
+        </template>
       </div>
     </div>
 
