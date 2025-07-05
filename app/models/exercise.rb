@@ -26,9 +26,9 @@ class Exercise < ApplicationRecord
   validates :name, presence: true
   validates :difficulty_id, presence: true
   validates :category_id, presence: true
-  validates :sets, presence: true, numericality: { only_integer: true }
-  validates :rest, presence: true, numericality: { only_integer: true }
-  validates :reps, numericality: { only_integer: true }
+  # validates :sets, presence: true, numericality: { only_integer: true }
+  # validates :rest, presence: true, numericality: { only_integer: true }
+  # validates :reps, numericality: { only_integer: true }
 
   attr_accessor :workout_ids
   attr_accessor :muscle_group_ids

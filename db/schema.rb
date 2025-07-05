@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_06_17_170104) do
+ActiveRecord::Schema[8.0].define(version: 2025_06_19_151151) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -77,11 +77,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_17_170104) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "sets"
-    t.integer "reps"
-    t.integer "rest"
-    t.integer "duration_time"
-    t.boolean "is_time_based", default: false, null: false
     t.integer "difficulty_id"
     t.integer "category_id"
     t.string "video_link"
@@ -98,7 +93,14 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_17_170104) do
     t.bigint "workout_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "sets"
+    t.integer "reps"
+    t.integer "rest"
+    t.integer "duration_time"
+    t.boolean "is_time_based"
+    t.integer "position"
     t.index ["exercise_id"], name: "index_plans_on_exercise_id"
+    t.index ["workout_id", "position"], name: "index_plans_on_workout_id_and_position", unique: true
     t.index ["workout_id"], name: "index_plans_on_workout_id"
   end
 

@@ -20,7 +20,7 @@ class Workout < ApplicationRecord
 
   def update_exercises
     # Convert string IDs to integers
-    desired_ids = exercise_ids.reject(&:blank?).map(&:to_i)
+    desired_ids = Array(exercise_ids).reject(&:blank?).map(&:to_i)
 
     # Remove unwanted associations
     plans.where.not(exercise_id: desired_ids).destroy_all
