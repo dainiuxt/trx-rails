@@ -26,24 +26,28 @@
       </div>
     </div>
 
-    <%= render "workout_structure" %>
+    <%#= render "workout_structure" %>
 
-    <div class="space-y-2">
-      <label class="text-sm font-medium">Exercises</label>
-      <div class="grid grid-cols-2 md:grid-cols-3 gap-2 mt-2">
-        <div data-controller="plan" data-plan-target="plans">
-          <%= form.fields_for :plans do |plan_form| %>
-            <div class="nested-plan" data-new-record="<%= plan_form.object.new_record? %>">
+    <div class="space-y-2 pt-6 border-t border-gray-100">
+      <div class="gap-2 mt-2">
+        <div data-controller="plan">
+          <div class="flex justify-between items-center mb-4">
+            <h3 class="text-lg font-medium">Workout Exercises</h3>
+            <button data-action="plan#add" type="button" class="inline-flex items-center rounded-md bg-orange-500 px-3 py-1.5 text-sm font-medium text-white hover:bg-orange-600">+ Add Exercise</button>
+          </div>
+          <div data-plan-target="plans">
+            <%= form.fields_for :plans do |plan_form| %>
+              <div class="nested-plan" data-new-record="<%= plan_form.object.new_record? %>">
+                <%= render("plan_fields", form: plan_form) %>
+              </div>
+            <% end %>
+          </div>
+          <template data-plan-target="template">
+            <% form.fields_for :plans, Plan.new, child_index: "NEW_RECORD" do |plan_form| %>
               <%= render "plan_fields", form: plan_form %>
-            </div>
-          <% end %>
+            <% end %>
+          </template>
         </div>
-        <button data-action="plan#add" class="mt-4 text-sm text-orange-600 hover:underline">+ Add Exercise to Workout</button>
-        <template data-plan-target="template">
-          <% form.fields_for :plans, Plan.new, child_index: "NEW_RECORD" do |plan_form| %>
-            <%= render "plan_fields", form: plan_form %>
-          <% end %>
-        </template>
       </div>
     </div>
 

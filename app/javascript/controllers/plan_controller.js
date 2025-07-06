@@ -1,14 +1,18 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
+  static identifier = "plan"
   static targets = ["plans", "template"]
 
   connect() {
+    console.log("✅ PlanController connected")
     this.index = this.plansTarget.childElementCount
   }
 
   add(event) {
     event.preventDefault()
+    console.log("➕ Add plan triggered")
+    console.log("📦 Template contents:", this.templateTarget.innerHTML)
     const content = this.templateTarget.innerHTML.replace(/NEW_RECORD/g, this.index)
     this.plansTarget.insertAdjacentHTML("beforeend", content)
     this.index++
