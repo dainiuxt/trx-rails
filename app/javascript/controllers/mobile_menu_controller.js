@@ -5,7 +5,6 @@ export default class extends Controller {
 
   connect() {
     // Initialize when controller connects
-    console.log("Mobile menu controller connected")
   }
 
   open() {

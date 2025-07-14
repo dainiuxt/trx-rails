@@ -1,3 +1,4 @@
+// app/javascript/controllers/plan_controller.js
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
@@ -5,27 +6,157 @@ export default class extends Controller {
   static targets = ["plans", "template"]
 
   connect() {
-    console.log("✅ PlanController connected")
-    this.index = this.plansTarget.childElementCount
+    setTimeout(() => {
+      if (!this.hasPlansTarget) {
+        console.warn("plans target not found after timeout")
+        return
+      } else
+      console.log(this.plansTarget)
+      this.index = this.plansTarget.childElementCount
+    }, 500)
   }
+
+  updatePositions() {
+    const plans = Array.from(this.plansTarget.querySelectorAll(".nested-plan"));
+
+    // Only update position inputs in plans NOT marked for destruction
+    const activePlans = plans.filter(plan => {
+      const destroyInput = plan.querySelector('input[name*="_destroy"]');
+      return !destroyInput || destroyInput.value !== "1";
+    });
+
+    activePlans.forEach((plan, index) => {
+      const input = plan.querySelector(".position-input");
+      if (input) {
+        input.value = index + 1; // Re-assign position starting from 1
+      }
+    });
+  }
+
+  // updatePositions() {
+  //   this.plansTarget.querySelectorAll(".nested-plan").forEach((plan, index) => {
+  //     const input = plan.querySelector("input[name*='[position]']")
+  //     if (input) input.value = index + 1
+  //   });
+  // }
 
   add(event) {
-    event.preventDefault()
-    console.log("➕ Add plan triggered")
-    console.log("📦 Template contents:", this.templateTarget.innerHTML)
-    const content = this.templateTarget.innerHTML.replace(/NEW_RECORD/g, this.index)
-    this.plansTarget.insertAdjacentHTML("beforeend", content)
-    this.index++
+    event.preventDefault();
+
+    // Generate a unique placeholder (timestamp) for the new nested fields
+    const uniqueId = new Date().getTime();
+    const content = this.templateTarget.innerHTML.replace(/NEW_RECORD/g, uniqueId);
+
+    // Wrap HTML into an element for DOM manipulation
+    const wrapper = document.createElement("div");
+    wrapper.innerHTML = content;
+
+    const newPlan = wrapper.firstElementChild;
+
+    // Append to plans target
+    this.plansTarget.appendChild(newPlan);
+
+    // Recalculate all positions (to ensure unique + ordered positions)
+    this.updatePositions();
   }
 
-  remove(event) {
-    event.preventDefault()
-    const item = event.target.closest(".nested-plan")
-    if (item.dataset.newRecord === "true") {
-      item.remove()
-    } else {
-      item.querySelector("input[name*='_destroy']").value = 1
-      item.style.display = "none"
+  // add(event) {
+  //   event.preventDefault();
+
+  //   // Replace placeholder with a unique timestamp
+  //   const content = this.templateTarget.innerHTML.replace(/NEW_RECORD/g, new Date().getTime());
+
+  //   // Create a container element and inject the HTML
+  //   const element = document.createElement("div");
+  //   element.innerHTML = content;
+
+  //   // Find the nested plan being added
+  //   const newPlan = element.firstElementChild;
+
+  //   // Set position input value
+  //   const positionInput = newPlan.querySelector(".position-input");
+  //   if (positionInput) {
+  //     positionInput.value = this.plansTarget.childElementCount + 1;
+  //   }
+
+  //   // Append to DOM
+  //   this.plansTarget.appendChild(newPlan);
+
+  //   // Update all positions
+  //   this.updatePositions();
+  // }
+
+remove(event) {
+  event.preventDefault();
+
+  
+  const planElement = event.target.closest(".nested-plan");
+  if (!planElement) return;
+  
+  const destroyField = planElement.querySelector('input[name*="_destroy"]');
+  
+  if (planElement.dataset.newRecord === "true") {
+    planElement.remove();
+  } else if (destroyField) {
+    destroyField.value = "1";
+    planElement.style.display = "none";  // or planElement.classList.add("hidden")
+  }
+  
+  const positionInput = planElement.querySelector(".position-input");
+  if (positionInput) positionInput.remove();
+  
+  this.updatePositions();
+}
+
+  // remove(event) {
+  //   event.preventDefault()
+  //   const item = event.target.closest(".nested-plan")
+  //   const destroyField = item.querySelector("input[type='hidden'][name*='_destroy']")
+  //   if (item.dataset.newRecord === "true") {
+  //     item.remove()
+  //   } else if (destroyField) {
+  //     destroyField.value = "1"
+  //     item.style.display = "none"
+  //   } else {
+  //     console.warn("No _destroy field found for deletion")
+  //   }
+  // }
+
+  // moveUp(event) {
+  //   const plan = event.target.closest(".nested-plan");
+  //   const prev = plan.previousElementSibling;
+  //   if (prev) {
+  //     plan.parentNode.insertBefore(plan, prev);
+  //     this.updatePositions();
+  //   }
+  // }
+
+  // moveDown(event) {
+  //   const plan = event.target.closest(".nested-plan");
+  //   const next = plan.nextElementSibling;
+  //   if (next) {
+  //     plan.parentNode.insertBefore(next, plan);
+  //     this.updatePositions();
+  //   }
+  // }
+
+  moveUp(event) {
+    event.preventDefault();
+    const current = event.target.closest(".nested-plan");
+    const prev = current.previousElementSibling;
+    if (prev) {
+      this.plansTarget.insertBefore(current, prev);
+      this.updatePositions();
+    }
+  }
+
+  moveDown(event) {
+    event.preventDefault();
+    const current = event.target.closest(".nested-plan");
+    const next = current.nextElementSibling;
+    if (next) {
+      this.plansTarget.insertBefore(next, current);
+      this.updatePositions();
     }
   }
 }

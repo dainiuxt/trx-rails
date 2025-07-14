@@ -3,7 +3,6 @@ class WorkoutsController < ApplicationController
   before_action :set_difficulty, only: %i[ new show edit update ]
   before_action :set_workout_type, only: %i[ new show edit update ]
   before_action :set_workout, only: %i[ show edit update ]
-  before_action :set_exercises, only: %i[ new show edit update ]
 
   def index
     @workouts = Workout.all
@@ -14,6 +13,7 @@ class WorkoutsController < ApplicationController
 
   def new
     @workout = Workout.new
+    @workout.plans.build
   end
 
   def create
@@ -29,16 +29,26 @@ class WorkoutsController < ApplicationController
   end
 
   def update
+    unless params[:workout][:plans_attributes]
+      params[:workout][:plans_attributes] = {}
+    end
+
     if @workout.update(workout_params)
       redirect_to @workout
     else
+      Rails.logger.error "Workout update failed: #{@workout.errors.full_messages}"
+      @workout.plans.each_with_index do |plan, index|
+        if plan.errors.any?
+          Rails.logger.error "Plan #{index} errors: #{plan.errors.full_messages}"
+        end
+      end
       render :edit, status: :unprocessable_entity
     end
   end
 
   private
     def set_workout
-      @workout = Workout.includes(:difficulty, :workout_type, :exercises).find(params[:id])
+      @workout = Workout.includes(:difficulty, :workout_type).find(params[:id])
     end
 
     def set_difficulty
@@ -49,16 +59,24 @@ class WorkoutsController < ApplicationController
       @workout_types = WorkoutType.all.order(:id)
     end
 
-    def set_exercises
-      @exercises = Exercise.all
-    end
-
     def workout_params
-      params.expect(workout: [  :name,
-                                :workout_description,
-                                :difficulty_id,
-                                :workout_type_id,
-                                :duration,
-                                exercise_ids: [] ])
+      params.require(:workout).permit(
+        :name,
+        :workout_description,
+        :difficulty_id,
+        :duration,
+        :workout_type_id,
+        plans_attributes: [
+          :id,
+          :exercise_id,
+          :sets,
+          :reps,
+          :rest,
+          :duration_time,
+          :is_time_based,
+          :position,
+          :_destroy
+        ]
+      )
     end
 end

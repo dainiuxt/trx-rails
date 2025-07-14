@@ -3,33 +3,22 @@ class Workout < ApplicationRecord
   belongs_to :difficulty
   belongs_to :workout_type
 
-  has_many :plans, dependent: :destroy
-  accepts_nested_attributes_for :plans, allow_destroy: true
+  has_many :plans, -> { order(:position) }, inverse_of: :workout, dependent: :destroy
+  accepts_nested_attributes_for :plans,
+                                allow_destroy: true,
+                                reject_if: ->(attrs) {
+                                            attrs[:_destroy].blank? && attrs.except(:_destroy).values.all?(&:blank?)
+                                            }
   has_many :exercises, through: :plans
-  after_save :update_exercises
 
   validates :name, presence: true
   validates :duration, numericality: { only_integer: true }
 
-  def exercise_ids
-    @exercise_ids || exercises.pluck(:id).map(&:to_i)
-  end
+  before_validation :normalize_plan_positions
 
-  attr_accessor :exercise_ids
-
-  private
-
-  def update_exercises
-    # Convert string IDs to integers
-    desired_ids = Array(exercise_ids).reject(&:blank?).map(&:to_i)
-
-    # Remove unwanted associations
-    plans.where.not(exercise_id: desired_ids).destroy_all
-
-    # Add new associations
-    existing_ids = plans.pluck(:exercise_id)
-    (desired_ids - existing_ids).each do |id|
-      plans.create!(exercise_id: id)
+  def normalize_plan_positions
+    plans.reject(&:marked_for_destruction?).sort_by(&:position).each_with_index do |plan, index|
+      plan.position = index + 1
     end
   end
 end
