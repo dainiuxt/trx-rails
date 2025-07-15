@@ -18,6 +18,10 @@ class ExercisesController < ApplicationController
   end
 
   def show
+    if params[:plan_id]
+      @plan = Plan.find_by(id: params[:plan_id])
+      @workout = @plan&.workout
+    end
   end
 
   def new

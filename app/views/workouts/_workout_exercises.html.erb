@@ -1,36 +1,34 @@
-<% if @workout.exercises.any? %>
-  <% @workout.exercises.each do |exercise| %>
+<% if @workout.plans.any? %>
+  <% @workout.plans.each do |plan| %>
     <div class="border rounded-lg overflow-hidden">
       <div class="grid md:grid-cols-4 items-center">
         <div class="md:col-span-1">
-          <% if exercise.featured_image.attached? %>
-            <%= image_tag exercise.featured_image, alt: exercise.name, class: "w-full h-[200px] object-cover rounded" %>
+          <% if plan.exercise.featured_image.attached? %>
+            <%= image_tag plan.exercise.featured_image, alt: plan.exercise.name, class: "w-full h-[200px] object-cover rounded" %>
           <% else %>
-            <img src="https://placehold.co/600x400/f97316/FFFFFF/png?text=<%= exercise.name %>" alt="<%= exercise.name %>" class="w-full h-[200px] object-cover rounded">
+            <img src="https://placehold.co/600x400/f97316/FFFFFF/png?text=<%= plan.exercise.name %>" alt="<%= plan.exercise.name %>" class="w-full h-[200px] object-cover rounded">
           <% end %>
         </div>
         <div class="p-6 md:col-span-3">
           <div class="flex flex-wrap justify-between items-start gap-4">
             <div>
-              <h3 class="text-xl font-bold"><%= exercise.name %></h3>
+              <h3 class="text-xl font-bold"><%= plan.exercise.name %></h3>
               <div class="mt-2 grid grid-cols-3 gap-4">
                 <div>
                   <p class="text-sm text-gray-500">Sets</p>
-                  <p class="font-medium"><%= exercise.sets %></p>
+                  <p class="font-medium"><%= plan.sets %></p>
                 </div>
                 <div>
                   <p class="text-sm text-gray-500">Reps</p>
-                  <p class="font-medium"><%= exercise.reps %></p>
+                  <p class="font-medium"><%= plan.reps %></p>
                 </div>
                 <div>
                   <p class="text-sm text-gray-500">Rest</p>
-                  <p class="font-medium"><%= exercise.rest %></p>
+                  <p class="font-medium"><%= plan.rest %></p>
                 </div>
               </div>
             </div>
-            <a href="<%= workout_exercise_path(@workout, exercise) %>" class="inline-flex items-center justify-center rounded-md border border-gray-200 px-4 py-2 text-sm font-medium">
-              View Exercise
-            </a>
+            <%= link_to "View Exercise", exercise_path(plan.exercise, plan_id: plan.id), class: "inline-flex items-center justify-center rounded-md border border-gray-200 px-4 py-2 text-sm font-medium" %>
           </div>
         </div>
       </div>

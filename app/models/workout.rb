@@ -3,12 +3,16 @@ class Workout < ApplicationRecord
   belongs_to :difficulty
   belongs_to :workout_type
 
-  has_many :plans, -> { order(:position) }, inverse_of: :workout, dependent: :destroy
+  has_many :plans, -> { order(:position) },
+            inverse_of: :workout,
+            dependent: :destroy
+
   accepts_nested_attributes_for :plans,
                                 allow_destroy: true,
                                 reject_if: ->(attrs) {
                                             attrs[:_destroy].blank? && attrs.except(:_destroy).values.all?(&:blank?)
                                             }
+
   has_many :exercises, through: :plans
 
   validates :name, presence: true

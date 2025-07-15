@@ -1,9 +1,18 @@
 <div class="container mx-auto px-4 py-8 md:px-6 md:py-12">
-  <%= link_to exercises_path, class: "inline-flex items-center text-sm font-medium text-orange-500 hover:underline mb-6" do %>
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-1 h-4 w-4">
-      <path d="m15 18-6-6 6-6"></path>
+  <% if @workout %>
+    <%= link_to workout_path(@workout), class: "inline-flex items-center text-sm font-medium text-orange-500 hover:underline mb-6" do %>
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-1 h-4 w-4">
+        <path d="m15 18-6-6 6-6"></path>
     </svg>
-    Back to Exercises
+    Back to Workout
+    <% end %>
+  <% else %>  
+    <%= link_to exercises_path, class: "inline-flex items-center text-sm font-medium text-orange-500 hover:underline mb-6" do %>
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-1 h-4 w-4">
+        <path d="m15 18-6-6 6-6"></path>
+      </svg>
+      Back to Exercises
+    <% end %>
   <% end %>
   <div class="grid gap-8 md:grid-cols-2">
 
@@ -15,7 +24,7 @@
         <div class="mt-2 text-gray-500">
           <%= @exercise.description %>
         </div>
-        <%= link_to "Edit Exercise", edit_exercise_path(@exercise), class: "inline-flex items-center text-sm font-medium text-orange-500 hover:underline mb-6" %>
+        <%= link_to "Edit Exercise", edit_exercise_path(@exercise), class: "inline-flex items-center text-sm font-medium text-orange-500 hover:underline mb-6" %> <br>
       </div>
 
       <%#= render "timing" %>

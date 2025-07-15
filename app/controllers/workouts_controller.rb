@@ -9,6 +9,7 @@ class WorkoutsController < ApplicationController
   end
 
   def show
+    
   end
 
   def new
@@ -36,12 +37,6 @@ class WorkoutsController < ApplicationController
     if @workout.update(workout_params)
       redirect_to @workout
     else
-      Rails.logger.error "Workout update failed: #{@workout.errors.full_messages}"
-      @workout.plans.each_with_index do |plan, index|
-        if plan.errors.any?
-          Rails.logger.error "Plan #{index} errors: #{plan.errors.full_messages}"
-        end
-      end
       render :edit, status: :unprocessable_entity
     end
   end
