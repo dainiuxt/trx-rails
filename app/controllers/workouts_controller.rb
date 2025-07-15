@@ -9,7 +9,6 @@ class WorkoutsController < ApplicationController
   end
 
   def show
-    
   end
 
   def new
