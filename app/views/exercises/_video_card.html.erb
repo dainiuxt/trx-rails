@@ -1,6 +1,6 @@
 <div class="mt-12">
   <h2 class="text-xl font-bold mb-4">Video Instructions</h2>
-  <div class="grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+  <div class="flex">
     <div class="aspect-video w-full">
       <iframe
         src="<%= video_embed(@exercise.video_link) %>"
@@ -9,8 +9,5 @@
         frameborder="0"
       ></iframe>
     </div>
-    <!-- Related Exercises -->
-      <%#= render "related_card" %>
-    <!-- END Related Exercises -->
   </div>
 </div>

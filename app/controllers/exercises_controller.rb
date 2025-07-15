@@ -6,6 +6,7 @@ class ExercisesController < ApplicationController
   before_action :set_muscle_groups, only: %i[ new show edit update ]
   before_action :set_exercise, only: %i[ show edit update ]
   before_action :set_workouts, only: %i[ new show edit update ]
+  before_action :get_plans, only: %i[ show edit update ]
 
   def index
     @categories = Category.all
@@ -18,10 +19,6 @@ class ExercisesController < ApplicationController
   end
 
   def show
-    if params[:plan_id]
-      @plan = Plan.find_by(id: params[:plan_id])
-      @workout = @plan&.workout
-    end
   end
 
   def new
@@ -49,6 +46,13 @@ class ExercisesController < ApplicationController
   end
 
   private
+    def get_plans
+      if params[:plan_id]
+        @plan = Plan.find_by(id: params[:plan_id])
+        @workout = @plan&.workout
+      end
+    end
+
     def set_exercise
       @exercise = Exercise.includes(:difficulty, :category, :muscle_groups).find(params[:id])
     end

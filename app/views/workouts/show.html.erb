@@ -22,20 +22,14 @@
         </div>
       </div>
 
-      <div class="mt-4 text-gray-500">
-        <%= @workout.workout_description%>
-      </div>
-
       <div class="mt-6 flex gap-4">
-        <a href="timer.html?workout=beginner-full-body" class="inline-flex items-center justify-center rounded-md bg-orange-500 px-4 py-2 text-sm font-medium text-white hover:bg-orange-600">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2 h-4 w-4">
-            <polygon points="5 3 19 12 5 21 5 3"></polygon>
-          </svg>
-          Start Workout
-        </a>
         <%= link_to edit_workout_path(@workout), class: "inline-flex items-center justify-center rounded-md border border-gray-200 px-4 py-2 text-sm font-medium" do %>
           Edit Workout
         <% end %>
+      </div>
+
+      <div class="mt-4 text-gray-500">
+        <%= @workout.workout_description%>
       </div>
     </div>
 

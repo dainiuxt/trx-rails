@@ -21,20 +21,37 @@
     <div class="space-y-6">
       <div>
         <h1 class="text-3xl font-bold"><%= @exercise.name %></h1>
+        <%= link_to "Edit Exercise", edit_exercise_path(@exercise), class: "inline-flex items-center text-sm font-medium text-orange-500 hover:underline mb-6" %>
+        <div class="mt-6 flex flex-wrap gap-2">
+          <div class="py-1 text-gray-700 text-sm">Difficulty:</div>
+          <div class="rounded-full bg-orange-100 px-3 py-1 text-sm text-orange-700"><%= @exercise.difficulty.name %></div>
+          <div class="py-1 text-gray-700 text-sm">Category:</div>
+          <div class="rounded-full bg-orange-100 px-3 py-1 text-sm text-orange-700"><%= @exercise.category.name %></div>
+        </div>
         <div class="mt-2 text-gray-500">
           <%= @exercise.description %>
         </div>
-        <%= link_to "Edit Exercise", edit_exercise_path(@exercise), class: "inline-flex items-center text-sm font-medium text-orange-500 hover:underline mb-6" %> <br>
       </div>
 
-      <%#= render "timing" %>
+      <div class="mt-6 flex flex-wrap gap-2">
 
-      <%= render "buttons" %>
+        <% if @exercise.muscle_groups.any? %>
+        <div class="py-1 text-gray-700 text-sm">Muscle groups:</div>
+          <% @exercise.muscle_groups.each do |mg| %>
+            <div class="rounded-full border border-orange-300 bg-orange-100 px-3 py-1 text-sm text-orange-700"><%= mg.name %></div>
+          <% end %>
+        <% end %>
+      </div>
 
       <div>
         <h2 class="text-xl font-bold mb-2">Instructions</h2>
         <div><%= @exercise.instructions %></div>
       </div>
+
+      <% if @exercise.video_link.present? %>
+        <%= render "video_card" %>
+      <% end %>
+
     </div>
   </div>
 
@@ -49,9 +66,4 @@
       <div><%= @exercise.precautions %></div>
     </div>
   </div>
-
-  <% if @exercise.video_link.present? %>
-    <%= render "video_card" %>
-  <% end %>
-
 </div>

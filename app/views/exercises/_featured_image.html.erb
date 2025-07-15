@@ -4,15 +4,4 @@
   <% else %>
     <img src="https://placehold.co/600x400/f97316/FFFFFF/png?text=<%= @exercise.name %>" alt="<%= @exercise.name %>" class="rounded-lg object-cover w-full">
   <% end %>
-
-  <div class="mt-6 flex flex-wrap gap-2">
-    <div class="rounded-full bg-orange-300 px-3 py-1 text-sm text-orange-700"><%= @exercise.difficulty.name %></div>
-    <div class="rounded-full bg-orange-100 px-3 py-1 text-sm text-orange-700"><%= @exercise.category.name %></div>
-    <% if @exercise.muscle_groups.any? %>
-      <% @exercise.muscle_groups.each do |mg| %>
-        <div class="rounded-full border border-orange-300 bg-orange-100 px-3 py-1 text-sm text-orange-700"><%= mg.name %></div>
-      <% end %>
-    <% end %>
-
-  </div>
 </div>
