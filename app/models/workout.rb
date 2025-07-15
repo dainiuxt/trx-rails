@@ -20,6 +20,19 @@ class Workout < ApplicationRecord
 
   before_validation :normalize_plan_positions
 
+  validate :validate_nested_plans
+
+  def validate_nested_plans
+    plans.each do |plan|
+      next if plan.marked_for_destruction?
+      unless plan.valid?
+        plan.errors.full_messages.each do |msg|
+          errors.add(:base, "Plan #{plan.exercise.name}: #{msg}")
+        end
+      end
+    end
+  end
+
   def normalize_plan_positions
     plans.reject(&:marked_for_destruction?).sort_by(&:position).each_with_index do |plan, index|
       plan.position = index + 1

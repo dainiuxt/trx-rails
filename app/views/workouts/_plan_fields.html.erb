@@ -1,6 +1,7 @@
 <%= form.hidden_field :_destroy %>
 <%= form.hidden_field :id if form.object.persisted? %>
 <%= form.hidden_field :position, value: form.object.position || 0, class: "position-input" %>
+<%= form.hidden_field :is_time_based, value: false %>
 
 <!-- Exercise Card -->
 <div class="border rounded-lg overflow-hidden my-4">
@@ -63,7 +64,7 @@
 
       <div class="space-y-2 mt-6">
         <%= form.label :is_time_based, "Time-Based", class: "text-sm font-medium" %>
-        <%= form.check_box :is_time_based,
+        <%= form.check_box :is_time_based, 
               class: "h-4 w-4 rounded border-gray-300 text-orange-500 focus:ring-orange-500" %>
       </div>
     </div>

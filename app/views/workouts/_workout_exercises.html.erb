@@ -18,13 +18,22 @@
                   <p class="text-sm text-gray-500">Sets</p>
                   <p class="font-medium"><%= plan.sets %></p>
                 </div>
-                <div>
-                  <p class="text-sm text-gray-500">Reps</p>
-                  <p class="font-medium"><%= plan.reps %></p>
-                </div>
+                <% if !plan.is_time_based? %>
+                  <div>
+                    <p class="text-sm text-gray-500">Reps</p>
+                    <p class="font-medium"><%= plan.reps %></p>
+                  </div>
+                <% end %>
+
+                <% if plan.is_time_based? %>
+                  <div>
+                    <p class="text-sm text-gray-500">Duration</p>
+                    <p class="font-medium"><%= plan.duration_time %> sec.</p>
+                  </div>
+                <% end %>
                 <div>
                   <p class="text-sm text-gray-500">Rest</p>
-                  <p class="font-medium"><%= plan.rest %></p>
+                  <p class="font-medium"><%= plan.rest %> sec.</p>
                 </div>
               </div>
             </div>

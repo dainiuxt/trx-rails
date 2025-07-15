@@ -34,7 +34,7 @@ class WorkoutsController < ApplicationController
     end
 
     if @workout.update(workout_params)
-      redirect_to @workout
+      redirect_to @workout, notice: "Workout updated"
     else
       render :edit, status: :unprocessable_entity
     end
