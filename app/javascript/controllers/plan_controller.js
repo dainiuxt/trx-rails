@@ -33,13 +33,6 @@ export default class extends Controller {
     });
   }
 
-  // updatePositions() {
-  //   this.plansTarget.querySelectorAll(".nested-plan").forEach((plan, index) => {
-  //     const input = plan.querySelector("input[name*='[position]']")
-  //     if (input) input.value = index + 1
-  //   });
-  // }
-
   add(event) {
     event.preventDefault();
 
@@ -60,32 +53,6 @@ export default class extends Controller {
     this.updatePositions();
   }
 
-  // add(event) {
-  //   event.preventDefault();
-
-  //   // Replace placeholder with a unique timestamp
-  //   const content = this.templateTarget.innerHTML.replace(/NEW_RECORD/g, new Date().getTime());
-
-  //   // Create a container element and inject the HTML
-  //   const element = document.createElement("div");
-  //   element.innerHTML = content;
-
-  //   // Find the nested plan being added
-  //   const newPlan = element.firstElementChild;
-
-  //   // Set position input value
-  //   const positionInput = newPlan.querySelector(".position-input");
-  //   if (positionInput) {
-  //     positionInput.value = this.plansTarget.childElementCount + 1;
-  //   }
-
-  //   // Append to DOM
-  //   this.plansTarget.appendChild(newPlan);
-
-  //   // Update all positions
-  //   this.updatePositions();
-  // }
-
 remove(event) {
   event.preventDefault();
 
@@ -104,41 +71,9 @@ remove(event) {
   
   const positionInput = planElement.querySelector(".position-input");
   if (positionInput) positionInput.remove();
-  
+
   this.updatePositions();
 }
-
-  // remove(event) {
-  //   event.preventDefault()
-  //   const item = event.target.closest(".nested-plan")
-  //   const destroyField = item.querySelector("input[type='hidden'][name*='_destroy']")
-  //   if (item.dataset.newRecord === "true") {
-  //     item.remove()
-  //   } else if (destroyField) {
-  //     destroyField.value = "1"
-  //     item.style.display = "none"
-  //   } else {
-  //     console.warn("No _destroy field found for deletion")
-  //   }
-  // }
-
-  // moveUp(event) {
-  //   const plan = event.target.closest(".nested-plan");
-  //   const prev = plan.previousElementSibling;
-  //   if (prev) {
-  //     plan.parentNode.insertBefore(plan, prev);
-  //     this.updatePositions();
-  //   }
-  // }
-
-  // moveDown(event) {
-  //   const plan = event.target.closest(".nested-plan");
-  //   const next = plan.nextElementSibling;
-  //   if (next) {
-  //     plan.parentNode.insertBefore(next, plan);
-  //     this.updatePositions();
-  //   }
-  // }
 
   moveUp(event) {
     event.preventDefault();

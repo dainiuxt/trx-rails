@@ -6,12 +6,7 @@ class Plan < ApplicationRecord
   validates :duration_time, numericality: { only_integer: true }, allow_nil: true
   validates :rest, numericality: { only_integer: true }, allow_nil: true
   validates :is_time_based, inclusion: { in: [ true, false ] }
-  # validates :position,
-  #           presence: true,
-  #           numericality: { only_integer: true },
-  #           uniqueness: { scope: :workout_id },
-  #           unless: :marked_for_destruction?,
-  #           if: -> { workout_id.present? }
+
   validates :exercise_id, presence: true
 
   validate :must_have_valid_params_set

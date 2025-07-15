@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_06_19_151151) do
+ActiveRecord::Schema[8.0].define(version: 2025_07_14_141656) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -100,8 +100,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_19_151151) do
     t.boolean "is_time_based"
     t.integer "position"
     t.index ["exercise_id"], name: "index_plans_on_exercise_id"
-    t.index ["workout_id", "position"], name: "index_plans_on_workout_id_and_position", unique: true
     t.index ["workout_id"], name: "index_plans_on_workout_id"
+    t.unique_constraint ["workout_id", "position"], deferrable: :deferred, name: "unique_workout_id_position"
   end
 
   create_table "sessions", force: :cascade do |t|
