@@ -1,0 +1,18 @@
+body {
+  font-family: 'Inter', sans-serif;
+}
+
+/* Mobile menu transition */
+.mobile-menu {
+  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+}
+
+.mobile-menu.hidden {
+  transform: translateX(100%);
+  opacity: 0;
+}
+
+.mobile-menu.block {
+  transform: translateX(0);
+  opacity: 1;
+}

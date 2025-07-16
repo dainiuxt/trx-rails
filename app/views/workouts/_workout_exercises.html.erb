@@ -1,6 +1,6 @@
 <% if @workout.plans.any? %>
   <% @workout.plans.each do |plan| %>
-    <div class="border rounded-lg overflow-hidden">
+    <div class="border border-gray-300 rounded-lg overflow-hidden">
       <div class="grid md:grid-cols-4 items-center">
         <div class="md:col-span-1">
           <% if plan.exercise.featured_image.attached? %>

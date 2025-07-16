@@ -1,6 +1,6 @@
 <!-- Exercise Card -->
 <% @exercises.each do |exercise| %>
-  <div class="rounded-lg border bg-white shadow-sm">
+  <div class="rounded-lg border border-gray-300 bg-white shadow-sm">
     <div class="p-0">
       <% if exercise.featured_image.attached? %>
         <%= image_tag exercise.featured_image, alt: exercise.name, class: "w-full object-cover h-[200px] rounded-t-lg" %>

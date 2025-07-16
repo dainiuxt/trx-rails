@@ -18,56 +18,15 @@
     <link rel="apple-touch-icon" href="/icon.png">
 
     <%# Includes all stylesheet files in app/assets/stylesheets %>
-    <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
-    <%= javascript_importmap_tags %>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            colors: {
-              orange: {
-                50: "#fff7ed",
-                100: "#ffedd5",
-                200: "#fed7aa",
-                300: "#fdba74",
-                400: "#fb923c",
-                500: "#f97316",
-                600: "#ea580c",
-                700: "#c2410c",
-                800: "#9a3412",
-                900: "#7c2d12",
-              },
-            }
-          }
-        }
-      }
-    </script>
+    <%= stylesheet_link_tag "application", "actiontext", "mobilemenu", "data-turbo-track": "reload" %>
+      <%= javascript_importmap_tags %>
     <style>
       @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
-      body {
-        font-family: 'Inter', sans-serif;
-      }
-
-      /* Mobile menu transition */
-      .mobile-menu {
-        transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
-      }
-      
-      .mobile-menu.hidden {
-        transform: translateX(100%);
-        opacity: 0;
-      }
-      
-      .mobile-menu.block {
-        transform: translateX(0);
-        opacity: 1;
-      }
     </style>
   </head>
   <body class="flex min-h-screen flex-col bg-white text-gray-900">
     <div data-controller="mobile-menu" data-action="keydown@window->mobile-menu#closeWithEscape">
-      <header class="sticky top-0 z-50 w-full border-b bg-white/95 backdrop-blur">
+      <header class="sticky top-0 z-50 w-full border-b border-gray-300 bg-white/95 backdrop-blur">
         <%= render "application/main_menu" %>
       </header>
       <%= render "application/mobile_menu" %>

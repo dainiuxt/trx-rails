@@ -11,7 +11,6 @@ export default class extends Controller {
         console.warn("plans target not found after timeout")
         return
       } else
-      console.log(this.plansTarget)
       this.index = this.plansTarget.childElementCount
     }, 500)
   }
