@@ -1,13 +1,13 @@
 # Name of your application. Used to uniquely configure containers.
-service: trx
+service: trx-companion
 
 # Name of the container image.
-image: your-user/trx
+image: kurapka/trx-companion
 
 # Deploy to these servers.
 servers:
   web:
-    - 192.168.0.1
+    - 91.98.72.133
   # job:
   #   hosts:
   #     - 192.168.0.1
@@ -17,15 +17,15 @@ servers:
 # Remove this section when using multiple web servers and ensure you terminate SSL at your load balancer.
 #
 # Note: If using Cloudflare, set encryption mode in SSL/TLS setting to "Full" to enable CF-to-app encryption.
-proxy:
-  ssl: true
-  host: app.example.com
+# proxy:
+#   ssl: true
+#   host: app.example.com
 
 # Credentials for your image host.
 registry:
   # Specify the registry server, if you're not using Docker Hub
   # server: registry.digitalocean.com / ghcr.io / ...
-  username: your-user
+  username: kurapka
 
   # Always use an access token rather than real password when possible.
   password:
@@ -36,6 +36,7 @@ env:
   secret:
     - RAILS_MASTER_KEY
   # clear:
+  #   RAILS_LOGRAGE_ENABLED: true
   #   # Set number of cores available to the application on each server (default: 1).
   #   WEB_CONCURRENCY: 2
 
@@ -67,6 +68,8 @@ asset_path: /rails/public/assets
 
 # Configure the image builder.
 builder:
+  # local: false
+  # remote: ssh://dainius@91.98.72.133
   arch: amd64
 
   # # Build image via remote server (useful for faster amd64 builds on arm64 computers)
@@ -80,8 +83,8 @@ builder:
   #   - RAILS_MASTER_KEY
 
 # Use a different ssh user than root
-# ssh:
-#   user: app
+ssh:
+  user: dainius
 
 # Use accessory services (secrets come from .kamal/secrets).
 # accessories:

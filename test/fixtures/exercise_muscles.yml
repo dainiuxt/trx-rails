@@ -1,9 +1,17 @@
-# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+pushups_chest:
+  exercise: exercise_pushups
+  muscle_group: chest
+  created_at: <%= Time.now %>
+  updated_at: <%= Time.now %>
 
-one:
-  exercise: one
-  muscle_group: one
+squats_legs:
+  exercise: exercise_squats
+  muscle_group: legs
+  created_at: <%= Time.now %>
+  updated_at: <%= Time.now %>
 
-two:
-  exercise: two
-  muscle_group: two
+plank_core:
+  exercise: exercise_plank
+  muscle_group: core
+  created_at: <%= Time.now %>
+  updated_at: <%= Time.now %>

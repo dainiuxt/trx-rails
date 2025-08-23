@@ -1,0 +1,47 @@
+plan_pushups:
+  exercise: exercise_pushups
+  workout: workout_full_body
+  sets: 3
+  reps: 12
+  rest: 60
+  duration_time: 0
+  is_time_based: false
+  position: 1
+  created_at: <%= Time.zone.now %>
+  updated_at: <%= Time.zone.now %>
+
+plan_squats:
+  exercise: exercise_squats
+  workout: workout_full_body
+  sets: 1
+  reps: 10
+  rest: 90
+  duration_time: 0
+  is_time_based: false
+  position: 1
+  created_at: <%= Time.zone.now %>
+  updated_at: <%= Time.zone.now %>
+
+plan_squats:
+  exercise: exercise_squats
+  workout: workout_full_body
+  sets: 4
+  reps: 10
+  rest: 90
+  duration_time: 0
+  is_time_based: false
+  position: 2
+  created_at: <%= Time.zone.now %>
+  updated_at: <%= Time.zone.now %>
+
+plan_plank:
+  exercise: exercise_plank
+  workout: workout_core_strength
+  sets: 1
+  reps: 0
+  rest: 30
+  duration_time: 300
+  is_time_based: true
+  position: 1
+  created_at: <%= Time.zone.now %>
+  updated_at: <%= Time.zone.now %>

@@ -1,7 +1,26 @@
-# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+exercise_pushups:
+  id: 1
+  name: Push Ups
+  difficulty_id: 1
+  category_id: 1
+  video_link: https://example.com/pushups.mp4
+  created_at: <%= Time.now %>
+  updated_at: <%= Time.now %>
 
-one:
-  name: MyString
+exercise_squats:
+  id: 2
+  name: Squats
+  difficulty_id: 1
+  category_id: 1
+  video_link: https://example.com/squats.mp4
+  created_at: <%= Time.now %>
+  updated_at: <%= Time.now %>
 
-two:
-  name: MyString
+exercise_plank:
+  id: 3
+  name: Plank
+  difficulty_id: 2
+  category_id: 2
+  video_link: https://example.com/plank.mp4
+  created_at: <%= Time.now %>
+  updated_at: <%= Time.now %>

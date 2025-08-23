@@ -1,7 +1,11 @@
-# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+strength:
+  id: 1
+  name: Strength
+  created_at: <%= Time.now %>
+  updated_at: <%= Time.now %>
 
-one:
-  name: MyString
-
-two:
-  name: MyString
+core:
+  id: 2
+  name: Core
+  created_at: <%= Time.now %>
+  updated_at: <%= Time.now %>

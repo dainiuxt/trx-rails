@@ -1,7 +1,11 @@
-# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+easy:
+  id: 1
+  name: Easy
+  created_at: <%= Time.now %>
+  updated_at: <%= Time.now %>
 
-one:
-  name: MyString
-
-two:
-  name: MyString
+medium:
+  id: 2
+  name: Medium
+  created_at: <%= Time.now %>
+  updated_at: <%= Time.now %>

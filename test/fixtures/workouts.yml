@@ -1,7 +1,11 @@
-# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+workout_full_body:
+  name: Full Body Workout
+  duration: 45
+  difficulty: medium
+  workout_type: circuit
 
-one:
-  name: MyString
-
-two:
-  name: MyString
+workout_core_strength:
+  name: Core Strength
+  duration: 20
+  difficulty: easy
+  workout_type: hiit
