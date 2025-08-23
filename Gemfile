@@ -65,3 +65,5 @@ end
 gem "cssbundling-rails", "~> 1.4"
 
 gem "tailwindcss-ruby", "~> 4.1"
+
+gem "dockerfile-rails", ">= 1.7", group: :development
